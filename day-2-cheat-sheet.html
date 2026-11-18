@@ -1,0 +1,704 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>110826 WSET Day 2 Cheat Sheet</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a tasting-sheet stack. Sticky grape index on top; each grape is a sheet with must-know first, the tell-apart grid, then five detail branches. */
+:root{
+  --bg:#F5F5F7; --paper:#FFFFFF; --ink:#1D1A21; --muted:#5E5867; --rule:#DCDAE2;
+  --red:#7B1E3C; --red-bg:#F7E9EE; --gold:#7A5E0C; --gold-bg:#F7F0DA; --must-bg:#1D1A21; --must-ink:#F5F3F8;
+  --display:"Gloock", Georgia, "Times New Roman", serif;
+  --body:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#131116; --paper:#1C1920; --ink:#ECE9F1; --muted:#A7A0B2; --rule:#34303B;
+  --red:#EE9AB5; --red-bg:#3A1A26; --gold:#E3C766; --gold-bg:#33290C; --must-bg:#ECE9F1; --must-ink:#16131A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131116; --paper:#1C1920; --ink:#ECE9F1; --muted:#A7A0B2; --rule:#34303B;
+  --red:#EE9AB5; --red-bg:#3A1A26; --gold:#E3C766; --gold-bg:#33290C; --must-bg:#ECE9F1; --must-ink:#16131A; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px;display:flex;flex-direction:column;gap:28px}
+h1,h2{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:1.1}
+h1{font-size:clamp(30px,5vw,44px)}
+h2{font-size:clamp(24px,3.6vw,32px)}
+h3{font-size:12px;font-family:var(--mono);font-weight:500;letter-spacing:.08em;text-transform:uppercase;margin:0 0 8px}
+p{margin:0}
+.intro{display:flex;flex-direction:column;gap:10px;max-width:68ch}
+.intro p{color:var(--muted)}
+.key{font-family:var(--mono);font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;gap:14px}
+.key span.dot::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:0}
+.key .kw::before{background:var(--gold)} .key .kr::before{background:var(--red)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--rule);padding-block:10px;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+nav ul{list-style:none;margin:0;padding:0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin}
+nav a{display:block;white-space:nowrap;font-size:13px;text-decoration:none;color:var(--ink);border:1px solid var(--rule);background:var(--paper);border-radius:999px;padding:4px 11px}
+nav a:hover,nav a:focus-visible{border-color:var(--ink);outline:none}
+.sheet{background:var(--paper);border:1px solid var(--rule);border-radius:14px;padding:22px clamp(16px,3vw,28px);display:flex;flex-direction:column;gap:18px;scroll-margin-top:64px}
+.sheet header{display:flex;flex-direction:column;gap:6px}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.persona{color:var(--muted);max-width:70ch}
+.must{background:var(--must-bg);color:var(--must-ink);border-radius:10px;padding:16px 18px}
+.must h3{color:var(--must-ink);opacity:.75}
+.must ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.must b{font-weight:600}
+.tell{display:flex;flex-direction:column;gap:6px}
+.grid{display:grid;grid-template-columns:118px repeat(var(--cols,2),minmax(0,1fr));gap:6px}
+.grid.one{--cols:1}
+.grid.three{--cols:3}
+.lbl{font-family:var(--mono);font-size:12px;color:var(--muted);padding-top:9px;border-top:1px solid var(--rule)}
+.c{border-radius:8px;padding:9px 12px;min-width:0}
+.w{background:var(--gold-bg)} .r{background:var(--red-bg)}
+.w b,.w .hd{color:var(--gold)} .r b,.r .hd{color:var(--red)}
+.hd{font-weight:600}
+.c b{font-weight:600}
+.c ul{margin:0;padding-left:17px}
+.c ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:3px}
+.c .reg + .reg{margin-top:6px}
+.pal{font-variant-numeric:tabular-nums}
+.bg{color:var(--muted);font-family:var(--mono);font-size:12px;cursor:help}
+.flag{font-size:13px;color:var(--muted);border-left:3px solid var(--rule);padding-left:10px}
+.sources{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+.sources a{color:inherit}
+.xs{min-width:0}
+.swipe{display:none;font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:6px}
+@media (max-width:640px){
+  .grid:not(.wide){grid-template-columns:repeat(var(--cols,2),minmax(0,1fr))}
+  .grid:not(.wide) .lbl{grid-column:1 / -1;padding-top:10px}
+  .grid:not(.wide) .spacer{display:none}
+  .c{padding:8px 10px;font-size:14px}
+  .xs{overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+  .swipe{display:block}
+  .grid.wide{grid-template-columns:88px repeat(var(--cols),124px);width:max-content}
+  .grid.wide .lbl,.grid.wide .spacer{position:sticky;left:0;z-index:1;background:var(--paper);padding-right:6px}
+}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<div class="wrap">
+  <div class="intro">
+    <p class="kicker">WSET Level 2 · Day 2</p>
+    <h1>Day 2 grape cheat sheet</h1>
+    <p>Each grape starts with the facts you must know, then how to tell it from its look-alike, then the detail: climate, winemaking, regions, palate, and flavours with age. Each fact appears once per grape. Where the course materials say nothing, the sheet says "not stated".</p>
+    <div class="key"><span class="dot kw">White wine</span><span class="dot kr">Red wine</span><span>H = high · M = medium · L = low</span></div>
+  </div>
+
+  <nav aria-label="Grapes">
+    <ul>
+      <li><a href="#pinot">Gris vs Grigio</a></li>
+      <li><a href="#labels">Italian labels</a></li>
+      <li><a href="#soave">Soave vs Gavi</a></li>
+      <li><a href="#verdicchio">Verdicchio vs Fiano</a></li>
+      <li><a href="#nebbiolo">Nebbiolo vs Barbera</a></li>
+      <li><a href="#sangiovese">Sangiovese vs Montepulciano</a></li>
+      <li><a href="#corvina">Corvina</a></li>
+      <li><a href="#italian-reds">Italian reds compared</a></li>
+      <li><a href="#zin">Zinfandel / Primitivo</a></li>
+      <li><a href="#gewurz">Gewurztraminer vs Viognier</a></li>
+      <li><a href="#albarino">Albariño</a></li>
+      <li><a href="#gamay">Gamay</a></li>
+      <li><a href="#tempranillo">Tempranillo &amp; Spain</a></li>
+      <li><a href="#southam">Malbec vs Carmenère</a></li>
+      <li><a href="#pinotage">Pinotage</a></li>
+      <li><a href="#sparkling">Sparkling</a></li>
+      <li><a href="#sherry">Sherry</a></li>
+      <li><a href="#port">Port</a></li>
+    </ul>
+  </nav>
+
+  <!-- PINOT GRIS / GRIGIO -->
+  <section class="sheet" id="pinot">
+    <header>
+      <p class="kicker">White · cool to moderate · same grape, two styles</p>
+      <h2>Pinot Gris vs Pinot Grigio</h2>
+      <p class="persona">The twins. Pinot Grigio is the Italian name, Pinot Gris the French one.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>The style difference comes mostly from grape-growing and harvesting choices.</b> Grigio: high yields, picked early while acidity is high. Gris: controlled yields, picked later and riper. Later-harvested grapes have higher sugars and lower acidity.</li>
+      <li><b>Pinot Grigio delle Venezie DOC</b> is simple and inexpensive.</li>
+      <li><b>Vendanges Tardives</b> means grapes picked later in the harvest season. Vendanges Tardives Pinot Gris is medium to sweet.</li>
+      <li><b>On labels outside Italy and France,</b> "Pinot Grigio" signals the high-acid, light style and "Pinot Gris" the fuller, more complex one.</li>
+    </ol></div>
+    <div class="tell">
+      <h3>Tell them apart</h3>
+      <div class="grid">
+        <div class="spacer"></div><div class="c w hd">Pinot Gris if…</div><div class="c w hd">Pinot Grigio if…</div>
+        <div class="lbl">Sweetness</div><div class="c w">Dry, off-dry or medium</div><div class="c w">Dry</div>
+        <div class="lbl">Acid</div><div class="c w">Medium (lower)</div><div class="c w">High</div>
+        <div class="lbl">Body</div><div class="c w">Full</div><div class="c w">Light</div>
+        <div class="lbl">Flavour</div><div class="c w">Pronounced peach, mango, ginger; also lemon, banana; complex</div><div class="c w">Simple apple and lemon</div>
+      </div>
+      <p class="flag">Gris can also be dry, so if it's dry, body and acid decide it.</p>
+    </div>
+    <div class="grid">
+      <div class="spacer"></div><div class="c w hd">Pinot Gris</div><div class="c w hd">Pinot Grigio</div>
+      <div class="lbl">Climate</div>
+      <div class="c w" style="grid-column:span 2">Cool to moderate, for both.</div>
+      <div class="lbl">Winemaking</div>
+      <div class="c w"><ul><li>Inert vessels, typically unoaked</li><li>Sweetness kept by stopping fermentation (removing the yeasts)</li></ul></div>
+      <div class="c w"><ul><li>Usually stainless steel, typically unoaked</li><li>Almost always fermented to dryness</li></ul></div>
+      <div class="lbl">Regions</div>
+      <div class="c w"><div class="reg"><b>France → Alsace AOC</b><br>Covers the whole region; labelled by grape.</div><div class="reg"><b>→ Alsace Grand Cru AOC</b><br>Steep east/south-east slopes of the Vosges foothills; more sun, so riper and fuller. The best Pinot Gris. Named vineyard on the label (e.g. Sonnenglanz).</div><div class="reg"><b>→ Vendanges Tardives</b><br>Only used in Alsace; extra-ripe grapes.</div></div>
+      <div class="c w"><div class="reg"><b>Italy → Veneto → delle Venezie DOC or Veneto IGT</b><br>High volume; short finish; acceptable to good quality.</div><div class="reg"><b>→ Friuli-Venezia Giulia</b><br>More complex, fuller-bodied Grigio.</div></div>
+      <div class="lbl">Age</div>
+      <div class="c w">Develops ginger and honey in bottle.</div>
+      <div class="c w">Drink fresh and young; its simple flavours fade quickly.</div>
+    </div>
+  </section>
+
+  <!-- ITALIAN LABELS -->
+  <section class="sheet" id="labels">
+    <header>
+      <p class="kicker">Labels · Italy</p>
+      <h2>Italian label terms</h2>
+      <p class="persona">Italian wines are named after their region (Barolo, Valpolicella) or after grape plus region (Barbera d'Asti = Barbera from Asti).</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>PDO</b> (Protected Designation of Origin): small areas, tightly defined rules, many of Europe's most famous wines. Italy's PDO terms are <b>DOCG</b> and <b>DOC</b>.</li>
+      <li><b>PGI</b> (Protected Geographical Indication): much wider areas, less strict rules, more freedom over grapes and winemaking. Italy's PGI term is <b>IGT</b>.</li>
+      <li><b>Classico</b> = from the historic centre of a region, often the hilliest part, usually more concentrated.</li>
+      <li><b>Riserva</b> = a DOC or DOCG wine aged for at least a set number of months before release.</li>
+    </ol></div>
+    <div class="tell">
+      <h3>Examples</h3>
+      <div class="grid three">
+        <div class="spacer"></div><div class="c r hd">DOCG</div><div class="c r hd">DOC</div><div class="c r hd">IGT</div>
+        <div class="lbl">Example</div><div class="c r">Barolo, Gavi, Fiano di Avellino, Amarone della Valpolicella</div><div class="c r">Soave, Valpolicella, Montepulciano d'Abruzzo</div><div class="c r">Veneto IGT</div>
+      </div>
+      <p class="flag">Classico (place) and Riserva (ageing) are easy to mix up, and so is Spain's Crianza (ageing).</p>
+    </div>
+    <div class="grid one">
+      <div class="lbl">Place → grape</div>
+      <div class="c r">Barolo, Barbaresco = Nebbiolo · Barbera d'Asti = Barbera · Chianti, Brunello di Montalcino = Sangiovese · Montepulciano d'Abruzzo = Montepulciano · Valpolicella, Amarone, Recioto della Valpolicella = Corvina · Soave, Recioto di Soave = Garganega · Gavi = Cortese · Verdicchio dei Castelli di Jesi = Verdicchio · Fiano di Avellino = Fiano · Puglia = Primitivo · delle Venezie = Pinot Grigio</div>
+    </div>
+  </section>
+
+  <!-- SOAVE VS GAVI -->
+  <section class="sheet" id="soave">
+    <header>
+      <p class="kicker">White · northern Italy</p>
+      <h2>Garganega (Soave) vs Cortese (Gavi)</h2>
+      <p class="persona">Two high-acid, unoaked whites known by their place names.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>Soave DOC and Soave Classico DOC = Garganega</b> (Veneto). <b>Gavi DOCG = Cortese</b> (Piemonte).</li>
+      <li><b>Both are fermented in inert vessels and not matured in oak.</b></li>
+      <li><b>Gavi is ready to drink on release</b> and not intended to age.</li>
+      <li><b>Recioto di Soave DOCG</b> is a sweet white made from dried grapes (appassimento).</li>
+    </ol></div>
+    <div class="tell">
+      <h3>Tell them apart</h3>
+      <div class="grid">
+        <div class="spacer"></div><div class="c w hd">Garganega if…</div><div class="c w hd">Cortese if…</div>
+        <div class="lbl">Body</div><div class="c w">Medium</div><div class="c w">Light</div>
+        <div class="lbl">Fruit</div><div class="c w">Apple, pear, lemon + peach</div><div class="c w">Apple, pear, lemon + blossom</div>
+        <div class="lbl">Ageing</div><div class="c w">Best Soave Classico gains honey and almond</div><div class="c w">Not intended to age</div>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="spacer"></div><div class="c w hd">Garganega</div><div class="c w hd">Cortese</div>
+      <div class="lbl">Climate</div>
+      <div class="c w" style="grid-column:span 2">Not stated.</div>
+      <div class="lbl">Regions</div>
+      <div class="c w"><div class="reg"><b>Italy → Veneto → Soave DOC</b><br>Drink young and fresh.</div><div class="reg"><b>→ Soave Classico DOC</b><br>Historic centre; the best can age.</div><div class="reg"><b>→ Recioto di Soave DOCG</b><br>Sweet.</div></div>
+      <div class="c w"><div class="reg"><b>Italy → Piemonte → Gavi DOCG</b></div></div>
+      <div class="lbl">Palate</div>
+      <div class="c w pal">Dry (sweet as Recioto) · Acid H</div>
+      <div class="c w pal">Dry · Acid H</div>
+    </div>
+  </section>
+
+  <!-- VERDICCHIO VS FIANO -->
+  <section class="sheet" id="verdicchio">
+    <header>
+      <p class="kicker">White · central and southern Italy</p>
+      <h2>Verdicchio vs Fiano</h2>
+      <p class="persona">Verdicchio is the zippy, green-fruited one; Fiano is the riper, peachy one.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>Verdicchio dei Castelli di Jesi DOC</b> is the most famous Verdicchio wine (Marche, central Italy's east coast).</li>
+      <li><b>Most Verdicchio is simple, fruity and not intended for ageing.</b> Outstanding examples develop honey and nuts.</li>
+      <li><b>Fiano di Avellino DOCG</b> comes from mountainous Campania in southern Italy. Usually drunk young; very good examples develop honey.</li>
+    </ol></div>
+    <div class="tell">
+      <h3>Tell them apart</h3>
+      <div class="grid">
+        <div class="spacer"></div><div class="c w hd">Verdicchio if…</div><div class="c w hd">Fiano if…</div>
+        <div class="lbl">Acid</div><div class="c w">High</div><div class="c w">Medium</div>
+        <div class="lbl">Body</div><div class="c w">Medium</div><div class="c w">Medium to full</div>
+        <div class="lbl">Fruit</div><div class="c w">Apple, pear, lemon + fennel</div><div class="c w">Peach, melon, mango</div>
+        <div class="lbl">Winemaking</div><div class="c w">Unoaked</div><div class="c w">Inert vessels, or lees (bread, biscuit) or oak (smoke)</div>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="spacer"></div><div class="c w hd">Verdicchio</div><div class="c w hd">Fiano</div>
+      <div class="lbl">Climate</div>
+      <div class="c w" style="grid-column:span 2">Not stated.</div>
+      <div class="lbl">Palate</div>
+      <div class="c w pal">Dry</div>
+      <div class="c w pal">Dry</div>
+    </div>
+  </section>
+
+  <!-- NEBBIOLO VS BARBERA -->
+  <section class="sheet" id="nebbiolo">
+    <header>
+      <p class="kicker">Red · moderate · Piemonte</p>
+      <h2>Nebbiolo vs Barbera</h2>
+      <p class="persona">Neighbours in north-west Italy. Both high acid; Nebbiolo has high tannin, Barbera has little.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>Barolo DOCG = 100% Nebbiolo.</b> Barbaresco DOCG (smaller, north-east of Barolo) is also Nebbiolo. Both are powerful and long-lived.</li>
+      <li><b>Barbera d'Asti DOCG</b> makes what many consider Barbera's best wines.</li>
+      <li><b>Nebbiolo often improves with age</b> thanks to its high acid and tannin: mushroom, tobacco, leather.</li>
+      <li><b>Barbera is enjoyable younger</b> than Nebbiolo and has less ageing potential.</li>
+    </ol></div>
+    <div class="tell">
+      <h3>Tell them apart</h3>
+      <div class="grid">
+        <div class="spacer"></div><div class="c r hd">Nebbiolo if…</div><div class="c r hd">Barbera if…</div>
+        <div class="lbl">Tannin</div><div class="c r">High</div><div class="c r">Low to medium</div>
+        <div class="lbl">Smell</div><div class="c r">Dried herbs, sometimes rose and violet</div><div class="c r">Sometimes black pepper</div>
+        <div class="lbl">Body</div><div class="c r">Typically full, pronounced flavours</div><div class="c r">Not stated</div>
+        <div class="lbl">Shared</div><div class="c r" style="grid-column:span 2">High acid · red cherry, red plum · typically single varietal</div>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="spacer"></div><div class="c r hd">Nebbiolo</div><div class="c r hd">Barbera</div>
+      <div class="lbl">Climate</div>
+      <div class="c r" style="grid-column:span 2">Northern Italy is generally moderate, in the Alpine foothills and the Po plain.</div>
+      <div class="lbl">Winemaking</div>
+      <div class="c r">Often aged a long time in oak to soften tannins; old or new barrels.</div>
+      <div class="c r">Many unoaked and fruity; some oaked for complexity.</div>
+      <div class="lbl">Regions</div>
+      <div class="c r"><div class="reg"><b>Italy → Piemonte → Barolo DOCG</b><br>Horseshoe valley, steep south-facing vineyards.</div><div class="reg"><b>→ Barbaresco DOCG</b></div></div>
+      <div class="c r"><div class="reg"><b>Italy → Piemonte → Barbera d'Asti DOCG</b></div></div>
+    </div>
+  </section>
+
+  <!-- SANGIOVESE VS MONTEPULCIANO -->
+  <section class="sheet" id="sangiovese">
+    <header>
+      <p class="kicker">Red · warm · central Italy</p>
+      <h2>Sangiovese vs Montepulciano</h2>
+      <p class="persona">Central Italy's two big reds, split by the Apennines: Sangiovese in Tuscany to the west, Montepulciano in Abruzzo to the east.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>Sangiovese = Chianti DOCG, Chianti Classico DOCG, Brunello di Montalcino DOCG.</b> Montepulciano d'Abruzzo is not Sangiovese.</li>
+      <li><b>Brunello di Montalcino</b> is a full-bodied, ageworthy red with very high tannin and acid. Brunello is the local name for Sangiovese.</li>
+      <li><b>Montepulciano d'Abruzzo DOC</b> is a high-volume, inexpensive red.</li>
+      <li><b>Chianti Classico Riserva DOCG</b> has stricter ageing rules and may show some tertiary notes on release.</li>
+    </ol></div>
+    <div class="tell">
+      <h3>Tell them apart</h3>
+      <div class="grid">
+        <div class="spacer"></div><div class="c r hd">Sangiovese if…</div><div class="c r hd">Montepulciano if…</div>
+        <div class="lbl">Acid</div><div class="c r">High</div><div class="c r">Medium</div>
+        <div class="lbl">Fruit</div><div class="c r">Red cherry, red plum + dried herbs</div><div class="c r">Black plum, black cherry</div>
+        <div class="lbl">Colour</div><div class="c r">Not stated</div><div class="c r">Deep</div>
+        <div class="lbl">Shared</div><div class="c r" style="grid-column:span 2">High tannin</div>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="spacer"></div><div class="c r hd">Sangiovese</div><div class="c r hd">Montepulciano</div>
+      <div class="lbl">Climate</div>
+      <div class="c r" style="grid-column:span 2">Warm, for both.</div>
+      <div class="lbl">Winemaking</div>
+      <div class="c r"><ul><li>Often blended with small amounts of other black grapes (local and international)</li><li>Often oaked to soften tannins: cloves, cedar</li></ul></div>
+      <div class="c r"><ul><li>Blended or single varietal</li><li>Mostly simple and fruity; more concentrated wines get a short time in oak</li></ul></div>
+      <div class="lbl">Regions</div>
+      <div class="c r"><div class="reg"><b>Italy → Tuscany → Chianti DOCG</b><br>Wide area, varied quality; many simple, inexpensive, not for ageing.</div><div class="reg"><b>→ Chianti Classico DOCG</b><br>Higher altitude, long ripening season; pronounced red cherry, red plum and dried herbs.</div><div class="reg"><b>→ Brunello di Montalcino DOCG</b><br>Warm, sunny southern Tuscany; long oak ageing before release.</div></div>
+      <div class="c r"><div class="reg"><b>Italy → Abruzzo → Montepulciano d'Abruzzo DOC</b></div></div>
+      <div class="lbl">Age</div>
+      <div class="c r">The best develop meat and leather; Brunello has very long ageing potential.</div>
+      <div class="c r">Typically for early drinking.</div>
+    </div>
+  </section>
+
+  <!-- CORVINA -->
+  <section class="sheet" id="corvina">
+    <header>
+      <p class="kicker">Red · moderate · Veneto</p>
+      <h2>Corvina</h2>
+      <p class="persona">The raisin dryer. High acid, low to medium tannin, red cherry and red plum. Fresh grapes make Valpolicella; dried grapes make Amarone and Recioto.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>Corvina is the main grape of a Valpolicella blend</b>; other local grapes are allowed.</li>
+      <li><b>Appassimento</b> = picking grapes and drying them indoors to concentrate sugars, acids, tannins and flavours.</li>
+      <li><b>Recioto della Valpolicella DOCG and Amarone della Valpolicella DOCG</b> are the two appassimento wines.</li>
+    </ol></div>
+    <div class="tell">
+      <h3>Tell the styles apart</h3>
+      <p class="swipe">Swipe sideways to see all four →</p>
+      <div class="xs"><div class="grid wide" style="--cols:4">
+        <div class="spacer"></div><div class="c r hd">Valpolicella DOC</div><div class="c r hd">Valpolicella Classico DOC</div><div class="c r hd">Amarone DOCG</div><div class="c r hd">Recioto DOCG</div>
+        <div class="lbl">Grapes</div><div class="c r">Fresh</div><div class="c r">Fresh, hillier heartland</div><div class="c r">Partially dried</div><div class="c r">Partially dried</div>
+        <div class="lbl">Style</div><div class="c r">Light, fruity, simple; drink young</div><div class="c r">More body and complexity</div><div class="c r">Dry to off-dry, full, high alcohol (~15%), high tannin</div><div class="c r">Sweet red</div>
+        <div class="lbl">Flavour</div><div class="c r">Red cherry, red plum</div><div class="c r">Red cherry, red plum</div><div class="c r">Red cherry + prune, raisin, fig</div><div class="c r">Not stated</div>
+      </div></div>
+    </div>
+    <div class="grid one">
+      <div class="lbl">Climate</div><div class="c r">Northern Italy is generally moderate.</div>
+      <div class="lbl">Winemaking</div><div class="c r">Basic Valpolicella rarely sees new oak.</div>
+      <div class="lbl">Regions</div><div class="c r"><b>Italy → Veneto → Valpolicella</b>, in north-east Italy.</div>
+    </div>
+  </section>
+
+  <!-- ITALIAN REDS COMPARED -->
+  <section class="sheet" id="italian-reds">
+    <header>
+      <p class="kicker">Red · Italy · side by side</p>
+      <h2>Italian reds compared</h2>
+    </header>
+    <p class="swipe">Swipe sideways to see all five grapes →</p>
+    <div class="xs"><div class="grid wide" style="--cols:5">
+      <div class="spacer"></div><div class="c r hd">Nebbiolo</div><div class="c r hd">Sangiovese</div><div class="c r hd">Barbera</div><div class="c r hd">Corvina</div><div class="c r hd">Montepulciano</div>
+      <div class="lbl">Climate</div><div class="c r">Moderate</div><div class="c r">Warm</div><div class="c r">Moderate</div><div class="c r">Moderate</div><div class="c r">Warm</div>
+      <div class="lbl">Acidity</div><div class="c r">High</div><div class="c r">High</div><div class="c r">High</div><div class="c r">High</div><div class="c r">Medium</div>
+      <div class="lbl">Tannin</div><div class="c r">High</div><div class="c r">High</div><div class="c r">Low to medium</div><div class="c r">Low to medium</div><div class="c r">High</div>
+      <div class="lbl">The tell</div><div class="c r">Floral: rose, violet</div><div class="c r">Dried herbs, no florals</div><div class="c r">Black pepper</div><div class="c r">Dried-grape wines (Amarone, Recioto)</div><div class="c r">Black plum, black cherry; medium acid</div>
+      <div class="lbl">Fruit</div><div class="c r">Red cherry, red plum</div><div class="c r">Red cherry, red plum</div><div class="c r">Red cherry, red plum</div><div class="c r">Red cherry, red plum</div><div class="c r">Black plum, black cherry</div>
+      <div class="lbl">Body</div><div class="c r">Typically full</div><div class="c r">Medium to full</div><div class="c r">Not stated</div><div class="c r">Light to full</div><div class="c r">Not stated</div>
+      <div class="lbl">Blending</div><div class="c r">Typically single varietal</div><div class="c r">Often blended with local and international varieties</div><div class="c r">Typically single varietal</div><div class="c r">Often blended with local varieties</div><div class="c r">Blended or single varietal</div>
+      <div class="lbl">Ageing</div><div class="c r">Ages: mushroom, tobacco, leather</div><div class="c r">Early drinking or ages; Brunello ageworthy</div><div class="c r">Early drinking or ages</div><div class="c r">Early drinking or ages</div><div class="c r">Early drinking</div>
+      <div class="lbl">Regions</div><div class="c r">Piemonte: Barolo DOCG, Barbaresco DOCG</div><div class="c r">Tuscany: Chianti, Chianti Classico, Brunello di Montalcino</div><div class="c r">Piemonte: Barbera d'Asti</div><div class="c r">Veneto: Valpolicella DOC, Valpolicella Classico DOC, Amarone della Valpolicella DOCG, Recioto della Valpolicella DOCG</div><div class="c r">Montepulciano d'Abruzzo DOC: high volume, inexpensive</div>
+    </div></div>
+  </section>
+
+  <!-- ZINFANDEL / PRIMITIVO -->
+  <section class="sheet" id="zin">
+    <header>
+      <p class="kicker">Red and rosé · warm · California and Italy</p>
+      <h2>Zinfandel vs Primitivo</h2>
+      <p class="persona">Arnold Schwarzenegger with two passports. Same grape: Zinfandel in California, Primitivo in Puglia.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>Needs a warm climate.</b> Ripens unevenly: some berries raisin before others ripen, giving high sugar and dried-fruit flavours (prune, raisin).</li>
+      <li><b>As it ripens, flavours move from red fruit</b> (strawberry, raspberry) <b>to black fruit</b> (plum, black cherry).</li>
+      <li><b>Premium Californian red Zinfandel</b> = blackberry, prune, vanilla. Dry, medium to high acid and tannin, high alcohol, full body.</li>
+      <li><b>White Zinfandel</b> is a medium-sweet rosé: low alcohol (8–10%), not oaked, simple strawberry and raspberry.</li>
+    </ol></div>
+    <div class="tell">
+      <h3>Tell the styles apart</h3>
+      <div class="grid three">
+        <div class="spacer"></div><div class="c r hd">Red Zinfandel</div><div class="c r hd">White Zinfandel</div><div class="c r hd">Primitivo</div>
+        <div class="lbl">Where</div><div class="c r">California</div><div class="c r">California</div><div class="c r">Puglia, southern Italy</div>
+        <div class="lbl">Style</div><div class="c r">Dry, full, high alcohol, oaked</div><div class="c r">Pink, medium-sweet, low alcohol</div><div class="c r">Soft, fruity, dry red; high-volume brands</div>
+        <div class="lbl">Made by</div><div class="c r">Full fermentation on the skins; oak softens tannins</div><div class="c r">Short maceration; yeasts removed before fermentation ends</div><div class="c r">Top examples from controlled yields</div>
+      </div>
+    </div>
+    <div class="grid one">
+      <div class="lbl">Regions</div><div class="c r"><div class="reg"><b>USA → California</b><br>Some very old vines give low yields of very concentrated fruit.</div><div class="reg"><b>Italy → Puglia</b><br>Top Primitivos can be excellent value.</div></div>
+      <div class="lbl">Flavours + age</div><div class="c r">Red Zinfandel: pronounced black fruit (blackberry, black plum), dried fruit (raisin, prune), oak (vanilla, coffee).<br><b>With age:</b> earth and meat (very good or outstanding reds).</div>
+    </div>
+  </section>
+
+  <!-- GEWURZTRAMINER VS VIOGNIER -->
+  <section class="sheet" id="gewurz">
+    <header>
+      <p class="kicker">White · aromatic · full-bodied</p>
+      <h2>Gewurztraminer vs Viognier</h2>
+      <p class="persona">Two of the world's fullest-bodied, most floral whites: Gewurztraminer is the perfume aunt, Viognier the sun goddess.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>Gewurztraminer's key aromas: rose and lychee.</b></li>
+      <li><b>Alsace Gewurztraminer = low acidity, full-bodied, high alcohol.</b> Its high sugar ferments to high alcohol.</li>
+      <li><b>Condrieu AOC</b> (Northern Rhône) is home to the finest Viognier; it is single-varietal Viognier only.</li>
+      <li><b>Both are aromatic, with low acid and high alcohol.</b></li>
+    </ol></div>
+    <div class="tell">
+      <h3>Tell them apart</h3>
+      <div class="grid">
+        <div class="spacer"></div><div class="c w hd">Gewurztraminer if…</div><div class="c w hd">Viognier if…</div>
+        <div class="lbl">Floral</div><div class="c w">Rose</div><div class="c w">Blossom</div>
+        <div class="lbl">Fruit</div><div class="c w">Lychee, peach, apricot</div><div class="c w">Peach, apricot</div>
+        <div class="lbl">Sweetness</div><div class="c w">Dry to sweet</div><div class="c w">Typically dry</div>
+        <div class="lbl">Oak</div><div class="c w">Typically unoaked</div><div class="c w">Oaked or unoaked; Condrieu often has light vanilla</div>
+        <div class="lbl">Body</div><div class="c w">Full</div><div class="c w">Medium to full</div>
+      </div>
+      <p class="flag">Lychee and rose point to Gewurztraminer. Workbook and textbook say "low to medium acidity" for both; the question bank says "low" for Alsace Gewurztraminer.</p>
+    </div>
+    <div class="grid">
+      <div class="spacer"></div><div class="c w hd">Gewurztraminer</div><div class="c w hd">Viognier</div>
+      <div class="lbl">Climate</div>
+      <div class="c w">Cool to moderate.</div>
+      <div class="c w">Moderate.</div>
+      <div class="lbl">Winemaking</div>
+      <div class="c w">Unoaked to keep the floral aromas.</div>
+      <div class="c w">Mostly inert vessels; unusually for an aromatic grape, some are oak-aged. Single varietal or blended, adding floral notes and body.</div>
+      <div class="lbl">Regions</div>
+      <div class="c w"><b>France → Alsace AOC</b>: some of the region's top grand cru wines, alongside Riesling and Pinot Gris.</div>
+      <div class="c w"><b>France → Northern Rhône → Condrieu AOC</b>. Also widely planted around the world.</div>
+      <div class="lbl">Age</div>
+      <div class="c w">Very good examples develop honey and dried fruit.</div>
+      <div class="c w">Not stated.</div>
+    </div>
+  </section>
+
+  <!-- ALBARIÑO -->
+  <section class="sheet" id="albarino">
+    <header>
+      <p class="kicker">White · moderate · Spain</p>
+      <h2>Albariño</h2>
+      <p class="persona">The Spanish coastal white. Zippy, lemon and peach.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>Albariño = Rías Baixas DO</b>, north-west Spain, close to the Atlantic.</li>
+      <li><b>Dry, high acid, medium-bodied, single varietal.</b></li>
+      <li><b>Lemon and peach</b>, plus grapefruit and apricot.</li>
+      <li><b>Most commonly unoaked and drunk young.</b></li>
+    </ol></div>
+    <div class="tell">
+      <h3>Tell it apart</h3>
+      <div class="grid">
+        <div class="spacer"></div><div class="c w hd">Albariño if…</div><div class="c w hd">Pinot Grigio if…</div>
+        <div class="lbl">Body</div><div class="c w">Medium</div><div class="c w">Light</div>
+        <div class="lbl">Flavour</div><div class="c w">Lemon, grapefruit, peach, apricot</div><div class="c w">Simple apple and lemon</div>
+      </div>
+    </div>
+    <div class="grid one">
+      <div class="lbl">Climate</div><div class="c w">Moderate. Rías Baixas is cooler, wetter and cloudier than Spain's other wine regions.</div>
+      <div class="lbl">Winemaking</div><div class="c w">Can be oaked; sometimes a little lees contact for body and complexity.</div>
+    </div>
+  </section>
+
+  <!-- GAMAY -->
+  <section class="sheet" id="gamay">
+    <header>
+      <p class="kicker">Red · moderate · France</p>
+      <h2>Gamay</h2>
+      <p class="persona">The party cousin. Light, juicy, red-fruited, made for early drinking.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>High acidity, low to medium tannin, red cherry and raspberry</b> (also red plum).</li>
+      <li><b>Beaujolais is the famous Gamay region</b>, directly south of Burgundy.</li>
+      <li><b>Typically light-bodied and unoaked</b>, usually made in inert vessels.</li>
+      <li><b>Banana and candy aromas</b> come from techniques that maximise colour but minimise tannin.</li>
+    </ol></div>
+    <div class="tell">
+      <h3>Tell the labels apart (low to high quality)</h3>
+      <div class="grid three">
+        <div class="spacer"></div><div class="c r hd">Beaujolais AOC</div><div class="c r hd">Beaujolais Villages AOC</div><div class="c r hd">Beaujolais Cru AOC</div>
+        <div class="lbl">Vineyards</div><div class="c r">Mostly flat, fertile south; high yields</div><div class="c r">Northern villages; stonier soils limit yields</div><div class="c r">Ten villages with their own appellations, e.g. Fleurie</div>
+        <div class="lbl">Style</div><div class="c r">Lightest, simplest</div><div class="c r">More flavour intensity and body</div><div class="c r">Most concentrated and structured; some can age</div>
+      </div>
+      <p class="flag">A cru label names the village (e.g. Fleurie) and may not say "Beaujolais" at all.</p>
+    </div>
+    <div class="grid one">
+      <div class="lbl">Flavours + age</div><div class="c r">Very good crus: medium to pronounced red cherry, raspberry and red plum, medium to long finish.<br><b>With age:</b> most lose their fresh fruit quickly in bottle.</div>
+      <div class="lbl">Service</div><div class="c r">Sometimes lightly chilled to show off the acidity and fresh fruit.</div>
+    </div>
+  </section>
+
+  <!-- TEMPRANILLO -->
+  <section class="sheet" id="tempranillo">
+    <header>
+      <p class="kicker">Red · moderate to warm · Spain</p>
+      <h2>Tempranillo and Spanish labels</h2>
+      <p class="persona">The timekeeper. Spain's most prized black grape, best known for its ageing ladder.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>Medium acidity, medium tannin, red cherry and blackberry</b> (also strawberry and black plum).</li>
+      <li><b>Rioja DOCa</b> is the most famous region. <b>Ribera del Duero DO</b> makes very full-bodied Tempranillo with dark fruit.</li>
+      <li><b>Ageing ladder, shortest to longest:</b> Joven → Crianza → Reserva → Gran Reserva. These are national Spanish terms.</li>
+      <li><b>Good Tempranillo ages into mushroom, dried fruit and leather.</b></li>
+      <li><b>Spanish labels:</b> PDO = DO and DOCa. PGI = Vino de la Tierra.</li>
+    </ol></div>
+    <div class="tell">
+      <h3>Tell the labels apart (shortest to longest ageing)</h3>
+      <p class="swipe">Swipe sideways to see all four →</p>
+      <div class="xs"><div class="grid wide" style="--cols:4">
+        <div class="spacer"></div><div class="c r hd">Joven</div><div class="c r hd">Crianza</div><div class="c r hd">Reserva</div><div class="c r hd">Gran Reserva</div>
+        <div class="lbl">Ageing</div><div class="c r">No minimum; released the year after vintage</div><div class="c r">Must age in oak</div><div class="c r">Extended time in oak and bottle</div><div class="c r">Highest minimums</div>
+        <div class="lbl">Tastes of</div><div class="c r">Primary fruit</div><div class="c r">Primary fruit + oak (vanilla, smoke, cedar)</div><div class="c r">Softer tannins; fresh red fruit turns cooked or dried; dried fruit, mushroom</div><div class="c r">Most pronounced oak and tertiary notes</div>
+      </div></div>
+      <p class="flag">Only wines with enough flavour, acid and tannin suit long ageing; a weak wine aged long tastes stale.</p>
+    </div>
+    <div class="grid one">
+      <div class="lbl">Climate</div><div class="c r">Moderate to warm.</div>
+      <div class="lbl">Winemaking</div><div class="c r"><ul><li>Traditionally small new-oak barrels: vanilla, smoke, cedar, softer tannins, more body</li><li>Best wines often aged in bottle before release</li><li>Small amounts of other grapes added for acid and tannin in wines for long ageing</li></ul></div>
+      <div class="lbl">Regions</div><div class="c r"><div class="reg"><b>Spain → Rioja DOCa</b><br>Moderate, north-east Spain. Usually a blend led by Tempranillo; Garnacha in wines for early drinking.</div><div class="reg"><b>→ Ribera del Duero DO</b><br>Mountainous, inland; warm days and cool nights give fresh blackberry and black plum.</div><div class="reg"><b>→ Catalunya DO</b><br>High volumes, from simple and light to powerful and oaked.</div><div class="reg"><b>Garnacha also:</b> Navarra DO; Priorat DOCa for the most powerful Garnacha.</div></div>
+    </div>
+  </section>
+
+  <!-- MALBEC VS CARMENERE -->
+  <section class="sheet" id="southam">
+    <header>
+      <p class="kicker">Red · warm · South America</p>
+      <h2>Malbec vs Carmenère</h2>
+      <p class="persona">Two French-born grapes that found fame in South America. Both deeply coloured, full-bodied, high tannin, often oaked, blended or single varietal.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>Malbec</b> is Argentina's most important black grape; most plantings are in high-altitude <b>Mendoza</b>. Native to south-west France.</li>
+      <li><b>Carmenère</b> is native to Bordeaux (rarely found there now) and widely grown in <b>Chile</b>.</li>
+      <li><b>Carmenère needs a long, sunny season;</b> even in Chile it struggles outside the warmest Central Valley sites.</li>
+      <li><b>Unripe Carmenère = pungent green bell pepper and tomato leaf.</b></li>
+    </ol></div>
+    <div class="tell">
+      <h3>Tell them apart</h3>
+      <div class="grid">
+        <div class="spacer"></div><div class="c r hd">Malbec if…</div><div class="c r hd">Carmenère if…</div>
+        <div class="lbl">Smell</div><div class="c r">Blackberry, black plum</div><div class="c r">Blackberry + eucalyptus (green pepper if unripe)</div>
+        <div class="lbl">Acid</div><div class="c r">Not stated</div><div class="c r">High</div>
+        <div class="lbl">Oak adds</div><div class="c r">Softness, clove, vanilla</div><div class="c r">Softer tannins, coffee, chocolate</div>
+        <div class="lbl">With age</div><div class="c r">Dried fruit, meat</div><div class="c r">Leather, earth</div>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="spacer"></div><div class="c r hd">Malbec</div><div class="c r hd">Carmenère</div>
+      <div class="lbl">Blending</div>
+      <div class="c r">Often with Cabernet Sauvignon and/or Merlot; also single varietal.</div>
+      <div class="c r">More commonly blended, e.g. with Cabernet Sauvignon and Merlot.</div>
+      <div class="lbl">Regions</div>
+      <div class="c r"><b>Argentina → Mendoza</b></div>
+      <div class="c r"><b>Chile → Central Valley</b></div>
+    </div>
+  </section>
+
+  <!-- PINOTAGE -->
+  <section class="sheet" id="pinotage">
+    <header>
+      <p class="kicker">Red · warm · South Africa</p>
+      <h2>Pinotage</h2>
+      <p class="persona">South Africa's own red, bred for its warm, dry climate. Closely related to Pinot Noir.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>Typically red fruit:</b> strawberry, raspberry, red cherry.</li>
+      <li><b>Cape Blends</b> = Pinotage blended with Cabernet Sauvignon and Merlot.</li>
+      <li><b>High acidity, medium tannin.</b> Styles range from fruity and medium-bodied to powerful and full-bodied.</li>
+      <li><b>Takes on strong oak flavours:</b> coffee, chocolate, smoke.</li>
+    </ol></div>
+    <div class="tell">
+      <h3>Tell it apart from Malbec and Carmenère</h3>
+      <div class="grid three">
+        <div class="spacer"></div><div class="c r hd">Pinotage</div><div class="c r hd">Malbec</div><div class="c r hd">Carmenère</div>
+        <div class="lbl">Fruit</div><div class="c r">Strawberry, raspberry, red cherry</div><div class="c r">Blackberry, black plum</div><div class="c r">Blackberry, eucalyptus; green bell pepper and tomato leaf if unripe</div>
+        <div class="lbl">Tannin</div><div class="c r">Medium</div><div class="c r">High</div><div class="c r">High</div>
+        <div class="lbl">Country</div><div class="c r">South Africa</div><div class="c r">Argentina</div><div class="c r">Chile</div>
+      </div>
+    </div>
+    <div class="grid one">
+      <div class="lbl">Regions</div><div class="c r"><b>South Africa → Western Cape</b> (grown throughout).</div>
+      <div class="lbl">Age</div><div class="c r">Very good or outstanding examples can age.</div>
+    </div>
+  </section>
+
+  <!-- SPARKLING -->
+  <section class="sheet" id="sparkling">
+    <header>
+      <p class="kicker">Sparkling · bottle or tank fermentation</p>
+      <h2>Sparkling wines</h2>
+      <p class="persona">The bubbles are CO₂ from a second fermentation, trapped in a sealed bottle or a sealed tank. The base wine is dry, high in acid, low in alcohol and usually a blend.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>Traditional method, in order:</b> autolysis → riddling → disgorging → dosage. Used for Champagne, Cava and Méthode Cap Classique.</li>
+      <li><b>Autolysis</b> (the lees breaking down) gives bread and biscuit notes. The longer on the lees, the more intense.</li>
+      <li><b>Non-vintage Champagne is a blend of different years.</b> Vintage Champagne comes from one exceptional year, and gains nuts and honey from bottle age.</li>
+      <li><b>Tank method:</b> Prosecco DOC (Glera). <b>Asti DOCG</b> is sweet and fruity, made from Muscat (Moscato). Cava is not a tank-method wine.</li>
+      <li><b>Brut = dry.</b> Dosage sets the final sweetness; Demi-Sec is medium sweet.</li>
+    </ol></div>
+    <div class="tell">
+      <h3>Tell them apart</h3>
+      <p class="swipe">Swipe sideways to see all four →</p>
+      <div class="xs"><div class="grid wide" style="--cols:4">
+        <div class="spacer"></div><div class="c w hd">Champagne</div><div class="c w hd">Cava</div><div class="c w hd">Prosecco</div><div class="c w hd">Asti</div>
+        <div class="lbl">Method</div><div class="c w">Traditional (bottle)</div><div class="c w">Traditional (bottle)</div><div class="c w">Tank</div><div class="c w">Asti method (tank)</div>
+        <div class="lbl">Where</div><div class="c w">Northern France; cool</div><div class="c w">Spain, mostly Catalunya; warm</div><div class="c w">North-east Italy</div><div class="c w">Piemonte, north-west Italy</div>
+        <div class="lbl">Grapes</div><div class="c w">Chardonnay, Pinot Noir, Meunier</div><div class="c w">Mainly local varieties; Chardonnay and Pinot Noir allowed</div><div class="c w">Glera</div><div class="c w">Moscato (Muscat)</div>
+        <div class="lbl">Sweetness</div><div class="c w">Mostly Brut (dry)</div><div class="c w">Not stated</div><div class="c w">Dry or off-dry</div><div class="c w">Sweet, low alcohol</div>
+        <div class="lbl">Flavour</div><div class="c w">Apple, lemon + toasted bread, biscuit</div><div class="c w">Light apple, pear; very subtle autolytic notes</div><div class="c w">Light apple, melon; no autolytic notes</div><div class="c w">Pronounced blossom, grape, peach, pear</div>
+        <div class="lbl">Body</div><div class="c w">Not stated</div><div class="c w">Not stated</div><div class="c w">Light to medium</div><div class="c w">Light</div>
+        <div class="lbl">On lees</div><div class="c w">At least 12 months; longer for better wines</div><div class="c w">Usually shorter than Champagne</div><div class="c w">None (filtered)</div><div class="c w">None (filtered)</div>
+      </div></div>
+    </div>
+    <div class="grid one">
+      <div class="lbl">Traditional method</div><div class="c w"><ol>
+        <li>Base wine + yeast + sugar go into a bottle sealed with a crown cap.</li>
+        <li>Second fermentation in the bottle adds CO₂ and about 1.5% alcohol.</li>
+        <li>Yeast autolysis: the lees break down, adding bread and biscuit.</li>
+        <li>Riddling: the lees slide into the bottle neck (by hand, or by gyropalette).</li>
+        <li>Disgorgement: the neck is frozen and the plug of ice and lees is forced out.</li>
+        <li>Dosage: topped up with liqueur d'expédition (wine and, usually, sugar).</li>
+        <li>Resealed with a thick cork and wire cage.</li>
+      </ol></div>
+      <div class="lbl">Tank method</div><div class="c w">Base wine, yeast and sugar ferment in a sealed tank; lees filtered out; bottled under pressure. Tastes of the base wine, with no autolytic notes. Cheaper, and suits aromatic grapes.</div>
+      <div class="lbl">Asti method</div><div class="c w">Starts from grape juice. CO₂ escapes at first, then the tank is sealed to keep it. Fermentation is stopped by filtering out the yeasts, leaving a sweet, low-alcohol wine.</div>
+      <div class="lbl">Labels</div><div class="c w">Traditional Method / Méthode traditionnelle = bottle fermented. Méthode Cap Classique = South Africa's traditional method (Champagne grapes or others, such as Chenin Blanc). Champagne and Cava don't have to state their PDO on the label. Vintage sparkling wines usually cost more than non-vintage ones from the same producer.</div>
+      <div class="lbl">New World</div><div class="c w">South Africa, California, Australia and New Zealand: traditional method, best from the coolest regions, often Champagne grapes, slightly riper fruit than Champagne.</div>
+      <div class="lbl">Service</div><div class="c w">Well chilled, 6–10°C, in a flute or tulip glass. Opening: hold the cork secure while loosening the cage, hold the bottle at an angle, and turn the bottle, not the cork.</div>
+    </div>
+  </section>
+
+  <!-- SHERRY -->
+  <section class="sheet" id="sherry">
+    <header>
+      <p class="kicker">Fortified · southern Spain</p>
+      <h2>Sherry</h2>
+      <p class="persona">Fortified after fermentation, so the starting point is dry. Most Sherry is dry; some is sweetened later.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>The base wine is a simple dry white</b>, made from Palomino, around Jerez de la Frontera.</li>
+      <li><b>Fortification happens after fermentation.</b></li>
+      <li><b>The solera system</b> is how Sherry ages: old-oak casks of wines of different ages, continually blended for a consistent, complex style.</li>
+      <li><b>Fino's bready flavour comes from flor</b>, a layer of yeast (biological ageing). <b>Oloroso</b> is aged oxidatively, without flor.</li>
+    </ol></div>
+    <div class="tell">
+      <h3>Tell the styles apart</h3>
+      <p class="swipe">Swipe sideways to see all four →</p>
+      <div class="xs"><div class="grid wide" style="--cols:4">
+        <div class="spacer"></div><div class="c w hd">Fino</div><div class="c w hd">Amontillado</div><div class="c w hd">Oloroso</div><div class="c w hd">PX (Pedro Ximénez)</div>
+        <div class="lbl">Fortified to</div><div class="c w">About 15%</div><div class="c w">About 15%, then refortified to about 17%</div><div class="c w">About 17% (flor can't survive)</div><div class="c w">Not stated</div>
+        <div class="lbl">Ageing</div><div class="c w">Under flor</div><div class="c w">Under flor, then oxidative</div><div class="c w">Oxidative</div><div class="c w">Oxidative; grapes sun-dried first</div>
+        <div class="lbl">Colour</div><div class="c w">Pale lemon</div><div class="c w">Deeper than Fino</div><div class="c w">Brown</div><div class="c w">Almost black</div>
+        <div class="lbl">Flavour</div><div class="c w">Apple, almond; biscuit, bread dough</div><div class="c w">Biscuit, bread dough + walnut, caramel</div><div class="c w">Raisin, prune + walnut, caramel</div><div class="c w">Fig, prune, raisin</div>
+        <div class="lbl">Sweetness</div><div class="c w">Dry</div><div class="c w">Dry</div><div class="c w">Dry</div><div class="c w">Sweet</div>
+      </div></div>
+    </div>
+    <div class="grid one">
+      <div class="lbl">Sweetened styles</div><div class="c w">Pale Cream = sweetened Fino. Medium and Cream = usually sweetened Amontillado or Oloroso. PX is often the sweetener in Cream Sherry.</div>
+      <div class="lbl">Service</div><div class="c w">Fino: chilled, and drunk as soon as possible after bottling, as it loses freshness fast.</div>
+    </div>
+  </section>
+
+  <!-- PORT -->
+  <section class="sheet" id="port">
+    <header>
+      <p class="kicker">Fortified · Portugal · always sweet</p>
+      <h2>Port</h2>
+      <p class="persona">Fortified during fermentation, so it stays sweet and strong. Made in the Upper Douro from local black grapes; most Ports blend several vintages.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>Adding grape spirit stops the fermentation</b> by killing the yeast, leaving a sweet, high-alcohol wine.</li>
+      <li><b>Vintage Port</b> is sweet, complex and concentrated. With long bottle age its colour turns from ruby to garnet.</li>
+      <li><b>Vintage Port should be decanted</b>; it forms a thick sediment.</li>
+      <li><b>An age indication of 10, 20, 30 or 40 years</b> means Tawny Port.</li>
+    </ol></div>
+    <div class="tell">
+      <h3>Tell the styles apart</h3>
+      <p class="swipe">Swipe sideways to see all four →</p>
+      <div class="xs"><div class="grid wide" style="--cols:4">
+        <div class="spacer"></div><div class="c r hd">Ruby, Reserve Ruby, LBV</div><div class="c r hd">Vintage</div><div class="c r hd">Tawny with age indication</div><div class="c r hd">Inexpensive Tawny</div>
+        <div class="lbl">Ageing</div><div class="c r">Large vessels (old oak or steel), bottled ready to drink</div><div class="c r">At least 20 years in bottle, often longer</div><div class="c r">Long oxidative ageing in small barrels</div><div class="c r">Not stated</div>
+        <div class="lbl">Colour</div><div class="c r">Deep</div><div class="c r">Ruby → garnet with age</div><div class="c r">Tawny</div><div class="c r">Pale</div>
+        <div class="lbl">Flavour</div><div class="c r">Cooked black cherry, blackberry, sometimes black pepper</div><div class="c r">Very concentrated; with age dried fruit, leather, coffee</div><div class="c r">Dried fruit, walnut, coffee, caramel</div><div class="c r">Simple, fruity, low tannin</div>
+        <div class="lbl">Notes</div><div class="c r">Ruby: simple, lower tannin. Reserve: better wines, more intensity. LBV: like Reserve, but one vintage.</div><div class="c r">One exceptional "declared" year; high tannin</div><div class="c r">10, 20, 30 or 40 years on the label</div><div class="c r">—</div>
+      </div></div>
+    </div>
+    <div class="grid one">
+      <div class="lbl">Winemaking</div><div class="c r"><ol>
+        <li>Rapid extraction of colour and tannin (traditionally by foot treading).</li>
+        <li>Partial fermentation.</li>
+        <li>Fortified with grape spirit during fermentation.</li>
+        <li>Matured, then blended and bottled; maturation decides the style.</li>
+      </ol></div>
+    </div>
+  </section>
+
+  <div class="sources">
+    <p>Built only from the Fine Vintage 165-question practice bank, the WSET Level 2 workbook (2019) and the WSET Level 2 textbook, Wines: Looking behind the label (2019). Where they differ, the question bank wins.</p>
+  </div>
+</div>
+
+</body></html>

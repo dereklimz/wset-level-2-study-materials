@@ -1,0 +1,479 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>WSET Tasting Sheet</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: one wine at a time, sticky wine strip on top, SAT sections stacked like the WSET grid */
+:root{
+  --bg:#f6f5f7; --surface:#ffffff; --ink:#1d1a22; --muted:#6c6574; --line:#e2dee6;
+  --accent:#7a1f3d; --accent-ink:#ffffff; --accent-soft:#f3e3e9; --head:#2c2533;
+  --ok:#2f7a4f; --ok-soft:#e2f1e8; --ans:#1f5f7a; --ans-ink:#ffffff; --ans-soft:#e0eef4; --bad:#b3401f; --bad-soft:#f8e6df;
+  --display:"Newsreader",Georgia,serif; --body:"Public Sans",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141217; --surface:#1d1a21; --ink:#ece8f0; --muted:#a39bab; --line:#332e39;
+  --accent:#d0668a; --accent-ink:#1a0d12; --accent-soft:#3a2230; --head:#e8e2ee;
+  --ok:#6cc893; --ok-soft:#1f3328; --ans:#6fb8d6; --ans-ink:#0c1a20; --ans-soft:#1b2d36; --bad:#ec8a6a; --bad-soft:#3a2219; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141217; --surface:#1d1a21; --ink:#ece8f0; --muted:#a39bab; --line:#332e39;
+  --accent:#d0668a; --accent-ink:#1a0d12; --accent-soft:#3a2230; --head:#e8e2ee;
+  --ok:#6cc893; --ok-soft:#1f3328; --ans:#6fb8d6; --ans-ink:#0c1a20; --ans-soft:#1b2d36; --bad:#ec8a6a; --bad-soft:#3a2219; color-scheme:dark}
+*{box-sizing:border-box}
+.mode{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:10px;width:fit-content;max-width:100%}
+.mode button{border:0;background:var(--surface);color:var(--ink);padding:8px 14px;font:600 .86rem var(--body);cursor:pointer}
+.mode button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.mode button.ansbtn[aria-pressed="true"]{background:var(--ans);color:var(--ans-ink)}
+.banner{margin-top:14px;padding:10px 14px;border-radius:10px;background:var(--ans-soft);color:var(--ink);font-size:.88rem}
+body.ans .chip[aria-pressed="true"]{background:var(--ans);border-color:var(--ans);color:var(--ans-ink)}
+body.ans .chip:hover{border-color:var(--ans)}
+.chip.mine{box-shadow:inset 0 0 0 2px var(--accent)}
+.chip.mine::after{content:" · you";font-size:.72rem;opacity:.8}
+.rev{padding:4px 16px 14px}
+.rev table{width:100%;border-collapse:collapse;font-size:.86rem}
+.rev td,.rev th{padding:7px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.rev th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.rev tr.off td{background:var(--bad-soft)}
+.rev .mk{font-weight:700;width:22px}
+.rev tr.ok .mk{color:var(--ok)} .rev tr.off .mk{color:var(--bad)}
+.score{font-family:var(--display);font-size:1.15rem;font-weight:600;padding:12px 16px 0}
+.lexrev{margin-top:10px;font-size:.86rem;display:grid;gap:6px}
+.lexrev .k{font-weight:600}
+.btn.ansbtn{background:var(--ans);color:var(--ans-ink);border-color:var(--ans)}
+.btn.big{padding:12px 20px;font-size:.95rem}
+.banner.mine{background:var(--accent-soft)}
+.chip[aria-disabled="true"]{cursor:default}
+body.ans .chip[aria-disabled="true"]:hover{border-color:var(--line)}
+.lexrev .miss{color:var(--bad)} .lexrev .hit{color:var(--ok)}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:14px 10px;border-bottom:1px solid var(--line)}
+.titlerow{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+h1{font-family:var(--display);font-weight:600;font-size:1.55rem;margin:0;text-wrap:balance}
+.status{font-size:.78rem;color:var(--muted);display:flex;align-items:center;gap:6px}
+.status i{width:7px;height:7px;border-radius:50%;background:var(--muted);display:inline-block}
+.status.saved i{background:var(--ok)} .status.saving i{background:var(--accent)}
+.strip{display:flex;gap:6px;overflow-x:auto;margin-top:10px;padding-bottom:4px;scrollbar-width:thin}
+.strip button{flex:0 0 auto;min-width:46px;padding:6px 8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;font:600 .9rem var(--body);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px}
+.strip button[aria-current="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.bar{width:28px;height:3px;border-radius:2px;background:var(--line);overflow:hidden}
+.bar span{display:block;height:100%;background:var(--ok)}
+.strip button[aria-current="true"] .bar{background:color-mix(in srgb,var(--accent-ink) 30%,transparent)}
+.strip button[aria-current="true"] .bar span{background:var(--accent-ink)}
+
+.ident{display:grid;grid-template-columns:1fr;gap:10px;margin-top:18px}
+.ident label{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:block;margin-bottom:4px}
+input[type=text],textarea{width:100%;font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+textarea{min-height:64px;resize:vertical}
+input:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+section.sat{margin-top:22px;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+section.sat>h2{margin:0;padding:12px 16px;font:600 .82rem var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--head);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:8px}
+section.sat>h2 small{font-weight:500;letter-spacing:0;text-transform:none;color:var(--muted);font-size:.78rem}
+.prompt{margin:0;padding:10px 16px 0;color:var(--muted);font-size:.86rem;font-style:italic;font-family:var(--display);font-size:.98rem}
+.row{display:grid;grid-template-columns:150px 1fr;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line);align-items:center}
+.row:last-child{border-bottom:0}
+.row>.lab{font-weight:600;font-size:.9rem}
+.row>.lab small{display:block;font-weight:400;color:var(--muted);font-size:.76rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px;min-width:0}
+.chip{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:6px 12px;font:500 .86rem var(--body);cursor:pointer;line-height:1.2}
+.chip:hover{border-color:var(--accent)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.chip.none{border-style:dashed;color:var(--muted)}
+.chip.none[aria-pressed="true"]{background:var(--muted);border-color:var(--muted);color:var(--surface);border-style:solid}
+.missing .lab::after{content:" •";color:var(--accent)}
+
+.lex{padding:4px 0 0}
+.tier{border-top:1px solid var(--line)}
+.tier>h3{margin:0;padding:12px 16px 4px;font-family:var(--display);font-weight:600;font-size:1.08rem;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.tier>h3 small{font-family:var(--body);font-weight:500;font-size:.76rem;color:var(--muted)}
+.tier>p{margin:0;padding:0 16px 6px;color:var(--muted);font-size:.8rem}
+.cl{display:grid;grid-template-columns:150px 1fr;gap:10px;padding:9px 16px;align-items:start;border-top:1px dashed var(--line)}
+.cl .lab{font-size:.86rem;font-weight:600;padding-top:5px;display:flex;gap:6px;align-items:center}
+.cl .lab .tick{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--line);flex:0 0 auto}
+.cl.done .lab .tick{background:var(--ok);border-color:var(--ok)}
+.cl.done{background:color-mix(in srgb,var(--ok-soft) 45%,transparent)}
+.picked{padding:10px 16px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:.86rem;color:var(--muted);min-height:44px}
+.picked b{color:var(--ink);font-weight:600}
+.tag{background:var(--accent-soft);color:var(--ink);border-radius:6px;padding:2px 8px;font-size:.82rem}
+.tag em{font-style:normal;color:var(--muted);font-size:.72rem;margin-left:4px}
+.tools{display:flex;gap:8px;flex-wrap:wrap;padding:10px 16px}
+.btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;padding:8px 12px;font:600 .84rem var(--body);cursor:pointer}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.danger{color:var(--accent)}
+.notes{padding:4px 16px 14px}
+.notes label{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:block;margin-bottom:4px}
+.foot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:22px}
+.summary{margin-top:14px;font-size:.84rem;color:var(--muted)}
+.hint{color:var(--muted);font-size:.8rem;margin:8px 0 0}
+#copyBox{width:100%;min-height:160px;margin-top:10px;font:.8rem ui-monospace,Menlo,monospace}
+@media (max-width:560px){
+  .row,.cl{grid-template-columns:1fr;gap:6px}
+  .cl .lab{padding-top:0}
+}
+@media (prefers-reduced-motion:no-preference){.chip,.strip button{transition:background .12s,border-color .12s,color .12s}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="titlerow">
+      <h1>WSET Tasting Sheet</h1>
+      <div class="status" id="status" role="status"><i></i><span>Loading…</span></div>
+    </div>
+    <nav class="strip" id="strip" aria-label="Wines"></nav>
+  </header>
+  <main id="main"></main>
+  <div class="foot">
+    <button class="btn" id="prevBtn">← Previous wine</button>
+    <button class="btn primary" id="nextBtn">Next wine →</button>
+  </div>
+  <div class="foot">
+    <button class="btn" id="copyAll">Copy all notes as text</button>
+    <span></span>
+  </div>
+  <textarea id="copyBox" hidden readonly aria-label="All notes as text"></textarea>
+</div>
+
+<script>
+const N = 11;
+const SCALES = {
+  int:["pale","medium","deep"],
+  col:{white:["lemon","gold","amber"],"rosé":["pink","pink-orange","orange"],red:["purple","ruby","garnet","tawny"]},
+  noseInt:["light","medium","pronounced"],
+  sweet:["dry","off-dry","medium","sweet"],
+  lmh:["low","medium","high"],
+  body:["light","medium","full"],
+  fint:["light","medium","pronounced"],
+  finish:["short","medium","long"],
+  quality:["poor","acceptable","good","very good","outstanding"]
+};
+const LEX = [
+  {tier:"Primary",sub:"The grape and alcoholic fermentation",clusters:[
+    ["floral","Floral",["blossom","rose","violet"]],
+    ["green","Green fruit",["apple","pear","gooseberry","grape"]],
+    ["citrus","Citrus fruit",["grapefruit","lemon","lime","orange"]],
+    ["stone","Stone fruit",["peach","apricot","nectarine"]],
+    ["tropical","Tropical fruit",["banana","lychee","mango","melon","passion fruit","pineapple"]],
+    ["red","Red fruit",["redcurrant","cranberry","raspberry","strawberry","red cherry","red plum"]],
+    ["black","Black fruit",["blackcurrant","blackberry","blueberry","black cherry","black plum"]],
+    ["herbaceous","Herbaceous",["green bell pepper","grass","tomato leaf","asparagus"]],
+    ["herbal","Herbal",["eucalyptus","mint","fennel","dill","dried herbs"]],
+    ["spice","Spice",["black/white pepper","liquorice"]],
+    ["ripeness","Fruit ripeness",["unripe fruit","ripe fruit","dried fruit","cooked fruit"]],
+    ["other","Other",["wet stones","candy"]]
+  ]},
+  {tier:"Secondary",sub:"Post-fermentation winemaking",clusters:[
+    ["yeast","Yeast (lees, autolysis, flor)",["biscuit","pastry","bread","toasted bread","bread dough","cheese","yogurt"]],
+    ["malo","Malolactic conversion",["butter","cream","cheese"]],
+    ["oak","Oak",["vanilla","cloves","coconut","cedar","charred wood","smoke","chocolate","coffee"]]
+  ]},
+  {tier:"Tertiary",sub:"Maturation",clusters:[
+    ["t_red","Red wine",["dried fruit","leather","earth","mushroom","meat","tobacco","wet leaves","forest floor","caramel"],["red","rosé",""]],
+    ["t_white","White wine",["dried fruit","orange marmalade","petrol","cinnamon","ginger","nutmeg","almond","hazelnut","honey","caramel"],["white","rosé",""]],
+    ["t_ox","Deliberately oxidised",["almond","hazelnut","walnut","chocolate","coffee","caramel"],["white","red","rosé",""]]
+  ]}
+];
+const LABEL = {};
+LEX.forEach(t=>t.clusters.forEach(c=>LABEL[c[0]]=c[1]));
+
+function blankNotes(){return{name:"",type:"",app:{int:"",col:""},nose:{int:"",lex:{},notes:""},
+  pal:{sweet:"",acid:"",tan:"",alc:"",body:"",fint:"",lex:{},notes:"",finish:""},quality:"",qnotes:""}}
+function blankWine(){const w=blankNotes();w.ans=blankNotes();return w}
+function blankState(){return{v:1,updatedAt:0,cur:0,wines:Array.from({length:N},blankWine)}}
+function normalize(s){s.wines.forEach(w=>{if(!w.ans)w.ans=blankNotes()});return s}
+
+let state = blankState();
+let mode = "mine", locked = false;
+const LS_KEY="wset-tasting-v1";
+try{const s=JSON.parse(localStorage.getItem(LS_KEY)||"null"); if(s&&s.wines&&s.wines.length===N) state=normalize(s);}catch(e){}
+
+/* ---------- persistence ---------- */
+let docRef=null, dirty=false, writing=false, timer=null, cloud=false;
+const statusEl=document.getElementById("status");
+function setStatus(kind,text){statusEl.className="status "+kind;statusEl.querySelector("span").textContent=text}
+setStatus("", "Saved on this device");
+
+function save(){
+  state.updatedAt=Date.now(); dirty=true;
+  try{localStorage.setItem(LS_KEY,JSON.stringify(state))}catch(e){}
+  setStatus("saving","Saving…");
+  clearTimeout(timer); timer=setTimeout(flush,700);
+}
+async function flush(){
+  if(!docRef){setStatus("saved","Saved on this device");dirty=false;return}
+  if(writing){clearTimeout(timer);timer=setTimeout(flush,400);return}
+  writing=true; const snap=JSON.parse(JSON.stringify(state));
+  try{await docRef.set(snap); if(snap.updatedAt===state.updatedAt){dirty=false;setStatus("saved","Saved to your account")}}
+  catch(e){
+    if(e&&e.code==="unavailable"){writing=false;timer=setTimeout(flush,1500+Math.random()*1000);return}
+    setStatus("","Saved on this device only");docRef=null;dirty=false;
+  }
+  writing=false;
+}
+(async()=>{
+  try{
+    const [db,user]=await Promise.all([window.claude?.use?.("db"),window.claude?.use?.("user")]);
+    const id=user?await user.id():null;
+    if(!db||!id){setStatus("saved","Saved on this device");return}
+    docRef=db.doc("data/users/"+id+"/tasting");
+    let first=true;
+    const t=setTimeout(()=>{if(first)setStatus("","Account sync not reachable yet · saved on this device")},10000);
+    docRef.onSnapshot(snap=>{
+      if(snap.metadata.hasPendingWrites) return;
+      const remote=snap.exists?snap.data():null;
+      if(!snap.metadata.fromCache){clearTimeout(t)}
+      if(first&&!snap.metadata.fromCache){first=false;
+        if(!remote||!remote.wines){ if(state.updatedAt) {flush()} else setStatus("saved","Saved to your account"); return }
+      }
+      if(remote&&remote.wines&&!dirty&&remote.updatedAt>state.updatedAt){
+        const cur=state.cur; state=normalize(JSON.parse(JSON.stringify(remote))); state.cur=cur;
+        try{localStorage.setItem(LS_KEY,JSON.stringify(state))}catch(e){}
+        render(); setStatus("saved","Saved to your account");
+      }else if(remote&&!dirty&&state.updatedAt>remote.updatedAt){flush()}
+      else if(!dirty) setStatus("saved","Saved to your account");
+    },err=>{clearTimeout(t);docRef=null;setStatus("","Saved on this device only")});
+  }catch(e){setStatus("saved","Saved on this device")}
+})();
+
+/* ---------- helpers ---------- */
+const $=(t,a={},...kids)=>{const e=document.createElement(t);for(const k in a){if(k==="on")for(const ev in a.on)e.addEventListener(ev,a.on[ev]);else if(k==="text")e.textContent=a[k];else e.setAttribute(k,a[k])}kids.flat().forEach(c=>c!=null&&e.append(c));return e};
+const W=()=>state.wines[state.cur];
+function relevant(c,type){return !c[3]||c[3].includes(type||"")}
+function lexClusters(type){const out=[];LEX.forEach(t=>t.clusters.forEach(c=>{if(relevant(c,type))out.push(c)}));return out}
+function lexDone(lex,type){const cs=lexClusters(type);return[cs.filter(c=>{const v=lex[c[0]];return v&&(v.none||(v.p&&v.p.length))}).length,cs.length]}
+function progress(w){
+  const f=[w.type,w.app.int,w.app.col,w.nose.int,w.pal.sweet,w.pal.acid,w.pal.tan,w.pal.alc,w.pal.body,w.pal.fint,w.pal.finish,w.quality];
+  let d=f.filter(Boolean).length,tot=f.length;
+  const [a,b]=lexDone(w.nose.lex,w.type),[c,e]=lexDone(w.pal.lex,w.type);
+  return (d+a+c)/(tot+b+e);
+}
+
+function chipRow(label,sub,opts,get,set,mineVal){
+  const val=get();
+  return $("div",{class:"row"+(val?"":" missing")},
+    $("div",{class:"lab"},label,sub?$("small",{text:sub}):null),
+    $("div",{class:"chips",role:"group","aria-label":label},
+      opts.map(o=>$("button",{class:"chip"+(mode==="ans"&&mineVal===o&&val!==o?" mine":""),type:"button","aria-pressed":String(val===o),"aria-disabled":String(locked),text:o,on:{click(){if(locked)return;set(val===o?"":o);save();render()}}}))));
+}
+
+function lexBlock(part,lex,type,mineLex){
+  const frag=[];
+  const sel=[];
+  LEX.forEach(t=>t.clusters.forEach(c=>{const v=lex[c[0]];if(v&&v.p)v.p.forEach(d=>sel.push([d,t.tier]))}));
+  const [done,tot]=lexDone(lex,type);
+  frag.push($("div",{class:"picked"},$("b",{text:sel.length?"Picked:":"Nothing picked yet."}),
+    sel.map(([d,t])=>$("span",{class:"tag"},d,$("em",{text:t.toLowerCase()})))));
+  LEX.forEach(t=>{
+    const cs=t.clusters.filter(c=>relevant(c,type));
+    if(!cs.length)return;
+    const tierDone=cs.filter(c=>{const v=lex[c[0]];return v&&(v.none||(v.p&&v.p.length))}).length;
+    const tier=$("div",{class:"tier"},
+      $("h3",{},t.tier,$("small",{text:tierDone+" / "+cs.length+" checked"})),
+      $("p",{text:t.sub+(t.tier==="Tertiary"&&!type?" · pick a wine type above to narrow this":"")}));
+    cs.forEach(c=>{
+      const key=c[0]; const v=lex[key]||{p:[],none:false};
+      const isDone=v.none||(v.p&&v.p.length);
+      tier.append($("div",{class:"cl"+(isDone?" done":"")},
+        $("div",{class:"lab"},$("span",{class:"tick","aria-hidden":"true"}),c[1]),
+        $("div",{class:"chips",role:"group","aria-label":c[1]},
+          c[2].map(d=>{const on=v.p&&v.p.includes(d);const mine=mineLex&&mineLex[key]&&mineLex[key].p&&mineLex[key].p.includes(d);return $("button",{class:"chip"+(mine&&!on?" mine":""),type:"button","aria-pressed":String(!!on),text:d,"aria-disabled":String(locked),on:{click(){if(locked)return;
+            const cur=lex[key]||{p:[],none:false};cur.p=cur.p||[];
+            cur.p=on?cur.p.filter(x=>x!==d):[...cur.p,d];cur.none=false;lex[key]=cur;save();render();}}})}),
+          $("button",{class:"chip none",type:"button","aria-pressed":String(!!v.none),text:"none","aria-disabled":String(locked),on:{click(){if(locked)return;
+            lex[key]={p:[],none:!v.none};save();render();}}})
+        )));
+    });
+    frag.push(tier);
+  });
+  return {frag,done,tot};
+}
+
+/* ---------- render ---------- */
+const FIELDS=[
+  ["Wine type",w=>w.type],["Appearance intensity",w=>w.app.int],["Colour",w=>w.app.col],
+  ["Nose intensity",w=>w.nose.int],
+  ["Sweetness",w=>w.pal.sweet],["Acidity",w=>w.pal.acid],["Tannin",w=>w.pal.tan],["Alcohol",w=>w.pal.alc],
+  ["Body",w=>w.pal.body],["Flavour intensity",w=>w.pal.fint],["Finish",w=>w.pal.finish],["Quality",w=>w.quality]
+];
+function allPicks(lex){const s=new Set();Object.values(lex||{}).forEach(v=>(v.p||[]).forEach(d=>s.add(d)));return s}
+function hasAns(a){return FIELDS.some(f=>f[1](a))||allPicks(a.nose.lex).size||allPicks(a.pal.lex).size||a.name}
+function lexCompare(mine,ans){
+  const m=allPicks(mine),a=allPicks(ans);
+  return{hit:[...a].filter(x=>m.has(x)),miss:[...a].filter(x=>!m.has(x)),extra:[...m].filter(x=>!a.has(x))};
+}
+function reviewSection(w){
+  const a=w.ans;
+  const sec=$("section",{class:"sat"},$("h2",{},"Where you landed vs the instructor"));
+  if(!hasAns(a)){sec.append($("p",{class:"prompt",text:"As the instructor goes through the wine, tap their answers above. The comparison builds here."}));return sec}
+  let right=0,total=0;
+  const rows=FIELDS.filter(f=>f[1](a)).map(([l,g])=>{total++;const ok=g(w)===g(a);if(ok)right++;
+    return $("tr",{class:ok?"ok":"off"},$("td",{class:"mk",text:ok?"✓":"✗"}),$("td",{text:l}),$("td",{text:g(w)||"—"}),$("td",{text:g(a)}))});
+  if(a.name)sec.append($("p",{class:"prompt",style:"font-style:normal",text:"The wine was: "+a.name}));
+  if(total)sec.append($("div",{class:"score",text:right+" of "+total+" calls matched"}));
+  const tb=$("table",{},$("tr",{},$("th",{}),$("th",{text:"Element"}),$("th",{text:"You"}),$("th",{text:"Instructor"})),rows);
+  const rev=$("div",{class:"rev"},$("div",{style:"overflow-x:auto"},tb));
+  [["Aromas (nose)",w.nose.lex,a.nose.lex],["Flavours (palate)",w.pal.lex,a.pal.lex]].forEach(([l,m,x])=>{
+    const c=lexCompare(m,x); if(!c.hit.length&&!c.miss.length)return;
+    rev.append($("div",{class:"lexrev"},$("div",{class:"k",text:l}),
+      $("div",{class:"hit",text:"✓ You got: "+(c.hit.join(", ")||"none")}),
+      $("div",{class:"miss",text:"✗ You missed: "+(c.miss.join(", ")||"nothing")}),
+      c.extra.length?$("div",{text:"Not in the instructor's answer: "+c.extra.join(", ")}):null));
+  });
+  if(a.qnotes)rev.append($("div",{class:"lexrev"},$("div",{class:"k",text:"Instructor's comments"}),$("div",{text:a.qnotes})));
+  sec.append(rev);
+  return sec;
+}
+
+function render(){
+  const w=W(); const y=window.scrollY;
+  const stage=w.stage||"tasting";
+  mode = stage==="tasting" ? "mine" : "ans";
+  locked = stage==="done";
+  const T = mode==="ans" ? w.ans : w;
+  const M = mode==="ans" ? w : null; // your saved picks, shown as outlined markers
+  const mv = g => M ? g(M) : undefined;
+  document.body.classList.toggle("ans",mode==="ans");
+  const ttype = T.type || w.type;
+
+  const strip=document.getElementById("strip"); strip.textContent="";
+  state.wines.forEach((x,i)=>{
+    const st=x.stage||"tasting";
+    const p=st==="done"?100:st==="instructor"?Math.max(50,Math.round(progress(x)*100)):Math.round(progress(x)*50);
+    strip.append($("button",{type:"button","aria-current":String(i===state.cur),title:"Wine "+(i+1)+(x.ans&&x.ans.name?" · "+x.ans.name:"")+" · "+({tasting:"tasting",instructor:"instructor notes",done:"done"})[st],on:{click(){go(i)}}},
+      String(i+1),$("span",{class:"bar"},$("span",{style:"width:"+p+"%"}))));
+  });
+
+  const main=document.getElementById("main"); main.textContent="";
+  const stepTxt={tasting:"Step 1 of 2 · Your blind tasting",instructor:"Step 2 of 2 · Instructor's answer",done:"Wine "+(state.cur+1)+" complete"}[stage];
+  const bannerTxt={tasting:"Taste blind and fill in every part. When you're done, hit “Save my tasting” at the bottom.",
+    instructor:"Your tasting is saved and locked, and copied in as the starting point. Only change what the instructor says differently. Anything you change leaves your original showing with a red outline and “· you”.",
+    done:"Saved. Your picks have a red outline, the instructor's are filled in blue. Tap “Edit instructor notes” to change them."}[stage];
+  main.append($("div",{class:"banner"+(mode==="mine"?" mine":"")},$("b",{text:stepTxt}),$("br"),bannerTxt));
+
+  const app=$("section",{class:"sat"},$("h2",{},"Appearance",$("small",{text:"Tilt the glass over white paper"})),
+    $("p",{class:"prompt",text:"Look at the core of the wine, then the rim. How much colour, and which hue?"}),
+    chipRow("Wine type","sets the colour scale",["white","rosé","red"],()=>T.type,v=>{T.type=v;if(!v||!SCALES.col[v].includes(T.app.col))T.app.col="";},mv(x=>x.type)),
+    chipRow("Intensity","",SCALES.int,()=>T.app.int,v=>T.app.int=v,mv(x=>x.app.int)),
+    ttype?chipRow("Colour",ttype,SCALES.col[ttype],()=>T.app.col,v=>T.app.col=v,mv(x=>x.app.col))
+          :$("div",{class:"row missing"},$("div",{class:"lab"},"Colour"),$("div",{class:"hint",text:"Pick white, rosé or red first."})));
+  main.append(app);
+
+  const n=lexBlock("nose",T.nose.lex,ttype,M&&M.nose.lex);
+  const nose=$("section",{class:"sat"},$("h2",{},"Nose",$("small",{text:mode==="mine"?n.done+" / "+n.tot+" aroma groups checked":"instructor"})),
+    $("p",{class:"prompt",text:mode==="ans"?"Tap the aromas the instructor names. Groups they don't mention can stay blank.":"Swirl, then short sniffs. Work down every group below: tap what you find, or “none” to confirm you checked."}),
+    chipRow("Intensity","",SCALES.noseInt,()=>T.nose.int,v=>T.nose.int=v,mv(x=>x.nose.int)),
+    $("div",{class:"lex"},n.frag),
+    M&&M.nose.notes?$("p",{class:"hint",style:"padding:0 16px",text:"Your other aromas: "+M.nose.notes}):null,
+    $("div",{class:"notes"},$("label",{for:"nnotes",text:mode==="ans"?"Instructor's other aromas":"Other aromas / notes"}),
+      $("textarea",{id:"nnotes",placeholder:"Anything outside the lexicon",on:{input(e){T.nose.notes=e.target.value;save()}}})));
+  nose.querySelector("#nnotes").value=T.nose.notes;
+  main.append(nose);
+
+  const p=lexBlock("pal",T.pal.lex,ttype,M&&M.pal.lex);
+  const pal=$("section",{class:"sat"},$("h2",{},"Palate",$("small",{text:mode==="mine"?p.done+" / "+p.tot+" flavour groups checked":"instructor"})),
+    $("p",{class:"prompt",text:"Take a sip and hold it. Structure first: tip of tongue for sweetness, watering mouth for acidity, drying gums for tannin, warmth at the back of the throat for alcohol."}),
+    chipRow("Sweetness","tip of tongue",SCALES.sweet,()=>T.pal.sweet,v=>T.pal.sweet=v,mv(x=>x.pal.sweet)),
+    chipRow("Acidity","mouth-watering",SCALES.lmh,()=>T.pal.acid,v=>T.pal.acid=v,mv(x=>x.pal.acid)),
+    chipRow("Tannin","drying gums"+(ttype&&ttype!=="red"?" · usually low":""),SCALES.lmh,()=>T.pal.tan,v=>T.pal.tan=v,mv(x=>x.pal.tan)),
+    chipRow("Alcohol","warmth in throat",SCALES.lmh,()=>T.pal.alc,v=>T.pal.alc=v,mv(x=>x.pal.alc)),
+    chipRow("Body","weight in mouth",SCALES.body,()=>T.pal.body,v=>T.pal.body=v,mv(x=>x.pal.body)),
+    chipRow("Flavour intensity","",SCALES.fint,()=>T.pal.fint,v=>T.pal.fint=v,mv(x=>x.pal.fint)),
+    $("p",{class:"prompt",text:"Flavour characteristics: take a second sip and breathe in through the mouth. Do the palate fresh. Copying from the nose is there if they truly match, but check for anything new (oak and age often show more here)."}),
+    locked?null:$("div",{class:"tools"},$("button",{class:"btn",type:"button",text:"Copy nose picks here",on:{click(){T.pal.lex=JSON.parse(JSON.stringify(T.nose.lex));save();render()}}})),
+    $("div",{class:"lex"},p.frag),
+    M&&M.pal.notes?$("p",{class:"hint",style:"padding:0 16px",text:"Your other flavours: "+M.pal.notes}):null,
+    $("div",{class:"notes"},$("label",{for:"pnotes",text:mode==="ans"?"Instructor's other flavours":"Other flavours / notes"}),
+      $("textarea",{id:"pnotes",placeholder:"Anything outside the lexicon",on:{input(e){T.pal.notes=e.target.value;save()}}})),
+    chipRow("Finish","how long flavours last after swallowing",SCALES.finish,()=>T.pal.finish,v=>T.pal.finish=v,mv(x=>x.pal.finish)));
+  pal.querySelector("#pnotes").value=T.pal.notes;
+  main.append(pal);
+
+  const con=$("section",{class:"sat"},$("h2",{},"Conclusions"),
+    $("p",{class:"prompt",text:"Judge quality on balance, length, intensity and complexity (BLIC). Note which ones hold up."}),
+    chipRow("Quality","",SCALES.quality,()=>T.quality,v=>T.quality=v,mv(x=>x.quality)),
+    M&&M.qnotes?$("p",{class:"hint",style:"padding:0 16px",text:"Your reasoning: "+M.qnotes}):null,
+    $("div",{class:"notes"},$("label",{for:"qnotes",text:mode==="ans"?"Instructor's comments / why":"Why (balance · length · intensity · complexity)"}),
+      $("textarea",{id:"qnotes",placeholder:mode==="ans"?"What the instructor said about this wine, and where you went off":"e.g. Balanced fruit and acidity, long finish, pronounced intensity, primary and secondary notes…",on:{input(e){T.qnotes=e.target.value;save()}}})));
+  con.querySelector("#qnotes").value=T.qnotes;
+  main.append(con);
+
+  if(mode==="ans"){
+    const rv=$("section",{class:"sat"},$("h2",{},"The reveal"),
+      $("p",{class:"prompt",text:"Once the instructor unblinds it: grape, region, producer, vintage."}),
+      $("div",{class:"notes"},$("label",{for:"wname",text:"What the wine is"}),
+        $("input",{type:"text",id:"wname",placeholder:"e.g. Chablis, Chardonnay, 2023",on:{input(e){w.ans.name=e.target.value;save()}}})));
+    rv.querySelector("#wname").value=w.ans.name;
+    main.append(rv);
+  }
+
+  if(mode==="mine"){
+    const missing=[];
+    if(!w.type)missing.push("wine type");if(!w.app.int)missing.push("appearance intensity");if(!w.app.col)missing.push("colour");
+    if(!w.nose.int)missing.push("nose intensity");if(n.done<n.tot)missing.push((n.tot-n.done)+" aroma groups");
+    [["sweet","sweetness"],["acid","acidity"],["tan","tannin"],["alc","alcohol"],["body","body"],["fint","flavour intensity"]].forEach(([k,l])=>{if(!w.pal[k])missing.push(l)});
+    if(p.done<p.tot)missing.push((p.tot-p.done)+" flavour groups");if(!w.pal.finish)missing.push("finish");if(!w.quality)missing.push("quality");
+    main.append($("p",{class:"summary",text:missing.length?"Still to check: "+missing.join(", ")+".":"Every part of the SAT is filled in for this wine."}));
+  } else {
+    main.append(reviewSection(w));
+  }
+
+  // stage actions
+  const acts=$("div",{class:"tools actions",style:"padding-left:0"});
+  const arm=(btn,label,confirmLabel,fn)=>{let armed=false;btn.textContent=label;btn.onclick=()=>{
+    if(!armed){armed=true;btn.textContent=confirmLabel;setTimeout(()=>{armed=false;btn.textContent=label},4000);return}fn()}};
+  if(stage==="tasting"){
+    acts.append($("button",{class:"btn primary big",type:"button",text:"Save my tasting",on:{click(){if(!hasAns(w.ans)){const c=JSON.parse(JSON.stringify(w));delete c.ans;delete c.stage;c.name="";c.qnotes="";w.ans=c;}w.stage="instructor";save();render();window.scrollTo(0,0)}}}));
+    const c=$("button",{class:"btn danger",type:"button"});arm(c,"Clear my notes","Tap again to clear wine "+(state.cur+1),()=>{const a=w.ans;state.wines[state.cur]=blankWine();state.wines[state.cur].ans=a;save();render()});acts.append(c);
+  }else if(stage==="instructor"){
+    acts.append($("button",{class:"btn ansbtn big",type:"button",text:"Save instructor notes",on:{click(){w.stage="done";save();render()}}}));
+  }else{
+    acts.append($("button",{class:"btn ansbtn",type:"button",text:"Edit instructor notes",on:{click(){w.stage="instructor";save();render()}}}));
+    const r=$("button",{class:"btn danger",type:"button"});arm(r,"Reopen my tasting","Tap again to reopen your own notes",()=>{w.stage="tasting";save();render();window.scrollTo(0,0)});acts.append(r);
+  }
+  main.append(acts);
+
+  document.getElementById("prevBtn").disabled=state.cur===0;
+  document.getElementById("nextBtn").textContent=state.cur===N-1?"Last wine":"Next wine →";
+  document.getElementById("nextBtn").disabled=state.cur===N-1;
+  main.querySelectorAll("textarea,input").forEach(el=>{if(locked)el.readOnly=true});
+  window.scrollTo(0,y);
+}
+function updStrip(){const b=document.querySelectorAll("#strip button")[state.cur];if(b)b.title=(W().name||"Wine "+(state.cur+1))}
+function go(i){state.cur=i;try{localStorage.setItem(LS_KEY,JSON.stringify(state))}catch(e){};render();window.scrollTo(0,0);
+  const b=document.querySelectorAll("#strip button")[i];b&&b.scrollIntoView({inline:"center",block:"nearest"})}
+document.getElementById("prevBtn").onclick=()=>state.cur>0&&go(state.cur-1);
+document.getElementById("nextBtn").onclick=()=>state.cur<N-1&&go(state.cur+1);
+
+/* ---------- export ---------- */
+function lexText(lex,notes){
+  const parts=[];
+  LEX.forEach(t=>{const ds=[];t.clusters.forEach(c=>{const v=lex[c[0]];if(v&&v.p&&v.p.length)ds.push(...v.p)});if(ds.length)parts.push(t.tier+": "+ds.join(", "))});
+  if(notes)parts.push("Other: "+notes);
+  return parts.join(" | ")||"—";
+}
+function asText(){
+  return state.wines.map((w,i)=>{
+    if(progress(w)===0&&!w.name)return null;
+    const d=v=>v||"—";
+    return ["WINE "+(i+1)+(w.ans&&w.ans.name?" · "+w.ans.name:""),
+      "Appearance: "+d(w.app.int)+" intensity, "+d(w.app.col)+(w.type?" ("+w.type+")":""),
+      "Nose: "+d(w.nose.int)+" intensity. "+lexText(w.nose.lex,w.nose.notes),
+      "Palate: "+d(w.pal.sweet)+", "+d(w.pal.acid)+" acidity, "+d(w.pal.tan)+" tannin, "+d(w.pal.alc)+" alcohol, "+d(w.pal.body)+" body, "+d(w.pal.fint)+" flavour intensity. "+lexText(w.pal.lex,w.pal.notes)+". Finish: "+d(w.pal.finish),
+      "Quality: "+d(w.quality)+(w.qnotes?" · "+w.qnotes:""),
+      ...(hasAns(w.ans)?["— Instructor —",
+        ...FIELDS.filter(f=>f[1](w.ans)).map(([l,g])=>(g(w)===g(w.ans)?"✓ ":"✗ ")+l+": you "+(g(w)||"—")+", instructor "+g(w.ans)),
+        ...[["Nose",w.nose.lex,w.ans.nose.lex],["Palate",w.pal.lex,w.ans.pal.lex]].map(([l,m,x])=>{const c=lexCompare(m,x);return c.hit.length||c.miss.length?l+" missed: "+(c.miss.join(", ")||"nothing")+" · got: "+(c.hit.join(", ")||"none"):null}).filter(Boolean),
+        ...(w.ans.qnotes?["Instructor comments: "+w.ans.qnotes]:[])]:[])].join("\n");
+  }).filter(Boolean).join("\n\n")||"No notes yet.";
+}
+document.getElementById("copyAll").onclick=async e=>{
+  const txt=asText(),box=document.getElementById("copyBox");
+  try{await navigator.clipboard.writeText(txt);e.target.textContent="Copied";setTimeout(()=>e.target.textContent="Copy all notes as text",2000)}
+  catch(err){box.hidden=false;box.value=txt;box.focus();box.select();e.target.textContent="Select the text below to copy"}
+};
+
+render();
+</script>
+
+</body></html>

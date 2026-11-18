@@ -1,0 +1,721 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>110826 WSET Day 1 Cheat Sheet</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a tasting-sheet stack. Sticky grape index on top; each grape is a sheet with must-know first, the tell-apart grid, then five detail branches. */
+:root{
+  --bg:#F5F5F7; --paper:#FFFFFF; --ink:#1D1A21; --muted:#5E5867; --rule:#DCDAE2;
+  --red:#7B1E3C; --red-bg:#F7E9EE; --gold:#7A5E0C; --gold-bg:#F7F0DA; --must-bg:#1D1A21; --must-ink:#F5F3F8;
+  --display:"Gloock", Georgia, "Times New Roman", serif;
+  --body:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#131116; --paper:#1C1920; --ink:#ECE9F1; --muted:#A7A0B2; --rule:#34303B;
+  --red:#EE9AB5; --red-bg:#3A1A26; --gold:#E3C766; --gold-bg:#33290C; --must-bg:#ECE9F1; --must-ink:#16131A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131116; --paper:#1C1920; --ink:#ECE9F1; --muted:#A7A0B2; --rule:#34303B;
+  --red:#EE9AB5; --red-bg:#3A1A26; --gold:#E3C766; --gold-bg:#33290C; --must-bg:#ECE9F1; --must-ink:#16131A; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px;display:flex;flex-direction:column;gap:28px}
+h1,h2{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:1.1}
+h1{font-size:clamp(30px,5vw,44px)}
+h2{font-size:clamp(24px,3.6vw,32px)}
+h3{font-size:12px;font-family:var(--mono);font-weight:500;letter-spacing:.08em;text-transform:uppercase;margin:0 0 8px}
+p{margin:0}
+.intro{display:flex;flex-direction:column;gap:10px;max-width:68ch}
+.intro p{color:var(--muted)}
+.key{font-family:var(--mono);font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;gap:14px}
+.key span.dot::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:0}
+.key .kw::before{background:var(--gold)} .key .kr::before{background:var(--red)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--rule);padding-block:10px;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+nav ul{list-style:none;margin:0;padding:0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin}
+nav a{display:block;white-space:nowrap;font-size:13px;text-decoration:none;color:var(--ink);border:1px solid var(--rule);background:var(--paper);border-radius:999px;padding:4px 11px}
+nav a:hover,nav a:focus-visible{border-color:var(--ink);outline:none}
+.sheet{background:var(--paper);border:1px solid var(--rule);border-radius:14px;padding:22px clamp(16px,3vw,28px);display:flex;flex-direction:column;gap:18px;scroll-margin-top:64px}
+.sheet header{display:flex;flex-direction:column;gap:6px}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.persona{color:var(--muted);max-width:70ch}
+.must{background:var(--must-bg);color:var(--must-ink);border-radius:10px;padding:16px 18px}
+.must h3{color:var(--must-ink);opacity:.75}
+.must ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.must b{font-weight:600}
+.tell{display:flex;flex-direction:column;gap:6px}
+.grid{display:grid;grid-template-columns:118px repeat(var(--cols,2),minmax(0,1fr));gap:6px}
+.grid.one{--cols:1}
+.grid.three{--cols:3}
+.lbl{font-family:var(--mono);font-size:12px;color:var(--muted);padding-top:9px;border-top:1px solid var(--rule)}
+.c{border-radius:8px;padding:9px 12px;min-width:0}
+.w{background:var(--gold-bg)} .r{background:var(--red-bg)}
+.w b,.w .hd{color:var(--gold)} .r b,.r .hd{color:var(--red)}
+.hd{font-weight:600}
+.c b{font-weight:600}
+.c ul{margin:0;padding-left:17px}
+.c ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:3px}
+.c .reg + .reg{margin-top:6px}
+.pal{font-variant-numeric:tabular-nums}
+.bg{color:var(--muted);font-family:var(--mono);font-size:12px;cursor:help}
+.flag{font-size:13px;color:var(--muted);border-left:3px solid var(--rule);padding-left:10px}
+.sources{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+.sources a{color:inherit}
+.xs{min-width:0}
+.swipe{display:none;font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:6px}
+@media (max-width:640px){
+  .grid:not(.wide){grid-template-columns:repeat(var(--cols,2),minmax(0,1fr))}
+  .grid:not(.wide) .lbl{grid-column:1 / -1;padding-top:10px}
+  .grid:not(.wide) .spacer{display:none}
+  .c{padding:8px 10px;font-size:14px}
+  .xs{overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+  .swipe{display:block}
+  .grid.wide{grid-template-columns:88px repeat(var(--cols),124px);width:max-content}
+  .grid.wide .lbl,.grid.wide .spacer{position:sticky;left:0;z-index:1;background:var(--paper);padding-right:6px}
+}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<div class="wrap">
+  <div class="intro">
+    <p class="kicker">WSET Level 2 · Day 1</p>
+    <h1>Day 1 grape cheat sheet</h1>
+    <p>The first five sections cover the basics from chapters 1–5: tasting, food pairing, storage and service, grape-growing and winemaking. Then each grape starts with the facts you must know, then how to tell its styles or look-alikes apart, then the detail. Each fact appears once per grape. Where the course materials say nothing, the sheet says "not stated".</p>
+    <div class="key"><span class="dot kw">White wine</span><span class="dot kr">Red wine</span><span>H = high · M = medium · L = low</span></div>
+  </div>
+
+  <nav aria-label="Grapes">
+    <ul>
+      <li><a href="#tasting">Tasting</a></li>
+      <li><a href="#food">Food pairing</a></li>
+      <li><a href="#service">Storage &amp; service</a></li>
+      <li><a href="#growing">Grape-growing &amp; labels</a></li>
+      <li><a href="#winemaking">Winemaking</a></li>
+      <li><a href="#chardonnay">Chardonnay</a></li>
+      <li><a href="#riesling">Riesling</a></li>
+      <li><a href="#sauvignon">Sauvignon Blanc</a></li>
+      <li><a href="#chenin">Chenin, Sémillon, Furmint</a></li>
+      <li><a href="#whites">Whites compared</a></li>
+      <li><a href="#pinot">Pinot Noir</a></li>
+      <li><a href="#bordeaux">Cabernet vs Merlot</a></li>
+      <li><a href="#syrah">Syrah vs Shiraz</a></li>
+      <li><a href="#grenache">Grenache</a></li>
+      <li><a href="#reds">Reds compared</a></li>
+    </ul>
+  </nav>
+
+  <!-- 1 TASTING -->
+  <section class="sheet" id="tasting">
+    <header>
+      <p class="kicker">Chapter 1</p>
+      <h2>Tasting and evaluating wine</h2>
+      <p class="persona">The WSET Systematic Approach to Tasting (SAT): appearance, nose, palate, then a quality conclusion.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>Most common colours:</b> red = ruby; white = lemon. A red with some age = garnet.</li>
+      <li><b>Oak and malolactic conversion aromas are secondary aromas.</b></li>
+      <li><b>Cork taint smells of damp cardboard.</b></li>
+      <li><b>Balance</b> = how flavour, sweetness, tannins and acidity work together.</li>
+    </ol></div>
+    <div class="tell">
+      <h3>The SAT scales</h3>
+      <div class="grid one">
+        <div class="lbl">Appearance</div><div class="c r"><b>Intensity:</b> pale – medium – deep. <b>White:</b> lemon – gold – amber. <b>Rosé:</b> pink – pink-orange – orange. <b>Red:</b> purple – ruby – garnet – tawny.</div>
+        <div class="lbl">Nose</div><div class="c r"><b>Intensity:</b> light – medium – pronounced. <b>Aroma characteristics:</b> primary, secondary, tertiary.</div>
+        <div class="lbl">Palate</div><div class="c r"><b>Sweetness:</b> dry – off-dry – medium – sweet. <b>Acidity, tannin, alcohol:</b> low – medium – high. <b>Body:</b> light – medium – full. <b>Flavour intensity:</b> light – medium – pronounced. <b>Finish:</b> short – medium – long.</div>
+        <div class="lbl">Conclusion</div><div class="c r"><b>Quality:</b> poor – acceptable – good – very good – outstanding.</div>
+      </div>
+    </div>
+    <div class="tell">
+      <h3>Aroma types</h3>
+      <div class="grid three">
+        <div class="spacer"></div><div class="c w hd">Primary</div><div class="c w hd">Secondary</div><div class="c w hd">Tertiary</div>
+        <div class="lbl">From</div><div class="c w">The grapes, or created during fermentation</div><div class="c w">Winemaking after fermentation</div><div class="c w">Ageing</div>
+        <div class="lbl">Examples</div><div class="c w">Fruit, floral, herbaceous</div><div class="c w">Oak (vanilla, smoke); malolactic (cream, butter); autolysis (toasted bread, biscuit)</div><div class="c w">Oxidative (coffee, caramel); in bottle (petrol, honey, mushroom); fruit turns dried</div>
+      </div>
+    </div>
+    <div class="tell">
+      <h3>Alcohol bands</h3>
+      <div class="grid three">
+        <div class="spacer"></div><div class="c r hd">Low</div><div class="c r hd">Medium</div><div class="c r hd">High</div>
+        <div class="lbl">Still wine</div><div class="c r">Below 11%</div><div class="c r">11–13.9%</div><div class="c r">14% and above</div>
+        <div class="lbl">Fortified</div><div class="c r">15–16.4%</div><div class="c r">16.5–18.4%</div><div class="c r">18.5% and above</div>
+      </div>
+    </div>
+    <div class="tell">
+      <h3>Judging quality: four criteria</h3>
+      <div class="grid one">
+        <div class="lbl">The four</div><div class="c r"><b>Balance</b> (sugar balanced by acid; alcohol and acid balanced by fruit) · <b>Length</b> of the finish · <b>Intensity</b> and identifiable flavours · <b>Complexity</b>.</div>
+        <div class="lbl">Scoring</div><div class="c r">All four positive = outstanding · three = very good · two = good · one = acceptable · none = poor. An unbalanced wine is rarely more than acceptable.</div>
+      </div>
+    </div>
+    <div class="grid one">
+      <div class="lbl">Tips</div><div class="c r"><ul>
+        <li>Judge acidity by how much and how long your mouth waters; sugar can mask acid, and alcohol burns like acid.</li>
+        <li>Body comes mostly from alcohol; sugar adds body, high acid makes it feel lighter, ripe tannin fuller.</li>
+        <li>Tannins dry the mouth and can taste bitter; they come mostly from the skins.</li>
+        <li>Only count pleasant sensations in the finish.</li>
+      </ul></div>
+      <div class="lbl">Setup</div><div class="c r">Good light, no strong smells, clean palate, no perfume. ISO glass (rounded bowl, inward-sloping walls); pour about 5 cL.</div>
+    </div>
+  </section>
+
+  <!-- 2 FOOD -->
+  <section class="sheet" id="food">
+    <header>
+      <p class="kicker">Chapter 2</p>
+      <h2>Pairing wine and food</h2>
+      <p class="persona">Food usually changes the wine more than the wine changes the food, and more often for the worse.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>Sweetness and umami make wine "harder"</b>: more drying, bitter and acidic, less sweet and fruity.</li>
+      <li><b>Salt and acid make wine "softer"</b>: less drying and acidic, sweeter and more fruity.</li>
+      <li><b>Match flavour intensity</b>: food and wine should be equally intense.</li>
+      <li><b>Chilli heat is worst with high-alcohol wines.</b></li>
+    </ol></div>
+    <div class="tell">
+      <h3>Food component → effect on the wine</h3>
+      <div class="grid three">
+        <div class="spacer"></div><div class="c r hd">Effect on wine</div><div class="c r hd">Tip</div><div class="c r hd">Examples</div>
+        <div class="lbl">Sweetness</div><div class="c r">More acidic, more bitter, less fruity</div><div class="c r">Pick a wine sweeter than the dish</div><div class="c r">Desserts</div>
+        <div class="lbl">Umami</div><div class="c r">More bitter</div><div class="c r">Often balanced by salt in the dish</div><div class="c r">Cooked or dried mushrooms, air-dried meats, aged cheese, miso</div>
+        <div class="lbl">Salt</div><div class="c r">More fruity; softens red-wine tannin</div><div class="c r">Wine-friendly</div><div class="c r">Not stated</div>
+        <div class="lbl">Acid</div><div class="c r">More fruity; balances high-acid wines</div><div class="c r">Low-acid wines can seem less fruity</div><div class="c r">Not stated</div>
+        <div class="lbl">Chilli heat</div><div class="c r">Heat feels stronger; alcohol more noticeable</div><div class="c r">Avoid high-alcohol wines</div><div class="c r">Not stated</div>
+        <div class="lbl">Fat</div><div class="c r">Acidic wine "cuts through" it</div><div class="c r">Subjective, but most people like it</div><div class="c r">Fatty or oily foods</div>
+      </div>
+      <p class="flag">People's sensitivities and preferences differ, so a "perfect pairing" for one person can feel ordinary to another.</p>
+    </div>
+  </section>
+
+  <!-- 3 STORAGE & SERVICE -->
+  <section class="sheet" id="service">
+    <header>
+      <p class="kicker">Chapter 3</p>
+      <h2>Storage and service of wine</h2>
+      <p class="persona">Everything here is about serving the wine in the best possible condition.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>Poor storage can create faulted wines.</b> Store cool, at a constant temperature, away from bright light; cork-sealed bottles on their side.</li>
+      <li><b>Room temperature = 18°C.</b></li>
+      <li><b>Sparkling goes in a flute</b> (or tulip glass). Vintage Port should be decanted.</li>
+      <li><b>A blanket system</b> adds a layer of gas to protect the leftover wine from oxidation.</li>
+    </ol></div>
+    <div class="tell">
+      <h3>Service temperatures</h3>
+      <div class="grid three">
+        <div class="spacer"></div><div class="c w hd">Example</div><div class="c w hd">Service</div><div class="c w hd">Temperature</div>
+        <div class="lbl">Sweet wines</div><div class="c w">Sauternes</div><div class="c w">Well chilled</div><div class="c w">6–8°C</div>
+        <div class="lbl">Sparkling</div><div class="c w">Champagne</div><div class="c w">Well chilled</div><div class="c w">6–10°C</div>
+        <div class="lbl">Light/medium white and rosé</div><div class="c w">Pinot Grigio</div><div class="c w">Chilled</div><div class="c w">7–10°C</div>
+        <div class="lbl">Medium/full oaked white</div><div class="c w">Oaked Chardonnay</div><div class="c w">Lightly chilled</div><div class="c w">10–13°C</div>
+        <div class="lbl">Light red</div><div class="c r">Beaujolais</div><div class="c r">Room temp or lightly chilled</div><div class="c r">13–18°C</div>
+        <div class="lbl">Medium/full red</div><div class="c r">Shiraz</div><div class="c r">Room temperature</div><div class="c r">15–18°C</div>
+      </div>
+    </div>
+    <div class="tell">
+      <h3>Common faults</h3>
+      <div class="grid three">
+        <div class="spacer"></div><div class="c r hd">Cork taint (TCA)</div><div class="c r hd">Oxidation (closure failure)</div><div class="c r hd">Heat damage</div>
+        <div class="lbl">Signs</div><div class="c r">Damp cardboard; muted, less fresh fruit</div><div class="c r">Deeper, browner colour; honey, caramel, coffee; no freshness</div><div class="c r">Dull, stale, lacking fruit</div>
+      </div>
+    </div>
+    <div class="grid one">
+      <div class="lbl">Glassware</div><div class="c w">The best glasses narrow at the rim to concentrate aromas. Red glasses are slightly larger than white. Glasses must be clean and polished.</div>
+      <div class="lbl">Before serving</div><div class="c w">Check for haziness, floating bits and faulty smells (stale, wet cardboard, vinegar).</div>
+      <div class="lbl">Keeping fresh</div><div class="c w">Fridge with the cork in; vacuum systems pump out the air; blanket systems add a protective gas. Chill with ice and water in the bucket; never heat a wine.</div>
+      <div class="lbl">Sparkling</div><div class="c w">Loosen the cage and keep a hand on the cork; hold the bottle at an angle; turn the bottle, not the cork, for a quiet "phut".</div>
+      <div class="lbl">Decanting</div><div class="c w">For wines with heavy deposit: keep the bottle still, pour slowly in front of a light, and stop when the deposit reaches the neck.</div>
+    </div>
+  </section>
+
+  <!-- 4 GROWING -->
+  <section class="sheet" id="growing">
+    <header>
+      <p class="kicker">Chapter 4</p>
+      <h2>Grape-growing and labelling terms</h2>
+      <p class="persona">A vine can live for over 60 years. It needs warmth, sunlight, carbon dioxide, water and nutrients.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>Order:</b> flowering → fruit set → véraison → ripening. At véraison grapes change colour: white to golden, black to red then purple.</li>
+      <li><b>The pulp holds sugars and acids</b> (and water, flavour). Skins hold flavour, colour and tannin; seeds and stems hold bitter tannins.</li>
+      <li><b>Most vineyards lie 30–50° north and south of the Equator.</b></li>
+      <li><b>Picked later = higher sugar, lower acid.</b> Cooler than usual vintages give too much acid.</li>
+      <li><b>Grenache</b> does well in warm climates but not cool ones. <b>Machine harvesting</b> works for wines of any quality (not on steep slopes).</li>
+      <li><b>Fungal diseases</b> damage vine leaves and spoil grape quality.</li>
+    </ol></div>
+    <div class="tell">
+      <h3>Climate bands (average growing-season temperature)</h3>
+      <div class="grid three">
+        <div class="spacer"></div><div class="c w hd">Cool</div><div class="c w hd">Moderate</div><div class="c w hd">Warm</div>
+        <div class="lbl">Temperature</div><div class="c w">16.5°C or below</div><div class="c w">16.5–18.5°C</div><div class="c w">18.5–21°C</div>
+      </div>
+      <p class="flag">Growing season: April–October in the north, October–April in the south.</p>
+    </div>
+    <div class="tell">
+      <h3>What moderates a climate</h3>
+      <div class="grid one">
+        <div class="lbl">Latitude</div><div class="c w">The biggest factor: closer to the Equator = hotter.</div>
+        <div class="lbl">Altitude</div><div class="c w">Higher = cooler.</div>
+        <div class="lbl">Seas</div><div class="c w">Cold currents cool warm regions (South Africa's Cape); warm currents warm northern Europe.</div>
+        <div class="lbl">Rivers</div><div class="c w">Warm cooler regions in autumn, reflect sunlight, protect from frost; morning mists help botrytis.</div>
+        <div class="lbl">Air</div><div class="c w">Cool winds from seas and mountains cool vineyards.</div>
+        <div class="lbl">Cloud, fog, mist</div><div class="c w">Cloud slows ripening (warmer Australian regions); fog cools coastal California and Chile.</div>
+        <div class="lbl">Mountains</div><div class="c w">Shelter from rain and cold winds: sunny summers, dry autumns.</div>
+        <div class="lbl">Slope, aspect</div><div class="c w">Slopes facing the Equator get more heat and light, so riper grapes.</div>
+        <div class="lbl">Soil</div><div class="c w">Supplies water and nutrients; surface stones store heat.</div>
+      </div>
+    </div>
+    <div class="tell">
+      <h3>Weather problems</h3>
+      <div class="grid one">
+        <div class="lbl">Cool vintage</div><div class="c w">Acid too high, sugar too low, weak aromas.</div>
+        <div class="lbl">Hot vintage</div><div class="c w">Dried-fruit aromas, sunburn; vines shut down without water.</div>
+        <div class="lbl">Drought</div><div class="c w">Grapes don't ripen; irrigation helps if water exists.</div>
+        <div class="lbl">Heavy rain</div><div class="c w">Spreads fungal disease; near harvest, swollen grapes and diluted flavours.</div>
+        <div class="lbl">Hail, frost</div><div class="c w">Hail can wipe out a crop; spring frost kills new growth.</div>
+      </div>
+    </div>
+    <div class="tell">
+      <h3>Ways to concentrate sugar</h3>
+      <div class="grid three">
+        <div class="spacer"></div><div class="c w hd">Extra ripening</div><div class="c w hd">Botrytis / noble rot</div><div class="c w hd">Frozen grapes</div>
+        <div class="lbl">How</div><div class="c w">Left on the vine; water evaporates, grapes raisin</div><div class="c w">Fungus pierces the skin; needs damp misty mornings and warm, dry afternoons</div><div class="c w">Frozen on the vine, picked and pressed frozen</div>
+        <div class="lbl">Result</div><div class="c w">Higher sugar, dried-fruit aromas</div><div class="c w">Concentrated sugar, acid, flavour; nearly always sweet wine</div><div class="c w">Icewine/Eiswein: sweet, pure varietal flavour</div>
+      </div>
+    </div>
+    <div class="tell">
+      <h3>EU label terms</h3>
+      <div class="grid">
+        <div class="spacer"></div><div class="c r hd">PDO: small areas, strict rules</div><div class="c r hd">PGI: wider areas, more freedom</div>
+        <div class="lbl">France</div><div class="c r">AOP, AOC</div><div class="c r">IGP, Vin de Pays</div>
+        <div class="lbl">Italy</div><div class="c r">DOCG, DOC</div><div class="c r">IGT</div>
+        <div class="lbl">Spain</div><div class="c r">DO, DOCa</div><div class="c r">Vino de la Tierra</div>
+        <div class="lbl">Germany</div><div class="c r">Qualitätswein, Prädikatswein</div><div class="c r">Landwein</div>
+      </div>
+      <p class="flag">A GI is a legally defined vineyard area. Inside the EU, GIs also regulate grapes and winemaking, so they predict style; outside the EU they only say where grapes grew.</p>
+    </div>
+    <div class="grid one">
+      <div class="lbl">Vineyard work</div><div class="c w">Training on trellises; winter pruning; irrigation where allowed; sprays (fungicides, pesticides, herbicides), fewer for organic. Too high a yield dilutes flavour and sugar.</div>
+      <div class="lbl">Other terms</div><div class="c w"><ul>
+        <li><b>Old Vine / vieilles vignes:</b> fewer, more concentrated grapes; not legally defined.</li>
+        <li><b>Vintage:</b> harvest year. Southern hemisphere wines are half a year older than northern ones of the same vintage.</li>
+        <li><b>Late Harvest:</b> riper, fuller, more concentrated; dry to sweet. In Alsace, Vendanges Tardives.</li>
+        <li><b>Botrytis/Noble Rot</b> and <b>Icewine/Eiswein:</b> concentrated sugar and acid, sweet wines.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <!-- 5 WINEMAKING -->
+  <section class="sheet" id="winemaking">
+    <header>
+      <p class="kicker">Chapter 5</p>
+      <h2>Winemaking</h2>
+      <p class="persona">Yeast turn grape sugar into alcohol, CO₂ and heat. Dry wines are usually 11.5–16% alcohol.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>White order:</b> crushing → pressing → fermentation → maturation.</li>
+      <li><b>Red order:</b> fermentation → draining → pressing → maturation (crushing comes first).</li>
+      <li><b>Fermentation temperatures:</b> white 12–22°C; red 20–32°C.</li>
+      <li><b>Red colour extraction:</b> pumping over or punching down the cap of skins.</li>
+      <li><b>Oak gives vanilla and toast. Lees give biscuit and bread.</b></li>
+    </ol></div>
+    <div class="tell">
+      <h3>Red, white and rosé</h3>
+      <div class="grid three">
+        <div class="spacer"></div><div class="c r hd">Red</div><div class="c w hd">White</div><div class="c r hd">Rosé</div>
+        <div class="lbl">Grapes</div><div class="c r">Black; skins in the ferment for colour and tannin</div><div class="c w">Usually white; black grapes work if pressed very gently</div><div class="c r">Black (short maceration) or a red/white blend</div>
+        <div class="lbl">Steps</div><div class="c r">Crush → ferment → drain → press → mature → package</div><div class="c w">Crush → press → ferment → mature → package</div><div class="c r">Drained off the skins after a few hours</div>
+        <div class="lbl">Ferment at</div><div class="c r">20–32°C</div><div class="c w">12–22°C (cooler = fruitier)</div><div class="c r">White-wine temperatures</div>
+        <div class="lbl">Notes</div><div class="c r">Skins form a cap that must be mixed in</div><div class="c w">Skins usually discarded</div><div class="c r">Blending banned in much of Europe; rarely oaked</div>
+      </div>
+    </div>
+    <div class="tell">
+      <h3>Four ways to make sweet wine</h3>
+      <p class="swipe">Swipe sideways to see all four →</p>
+      <div class="xs"><div class="grid wide" style="--cols:4">
+        <div class="spacer"></div><div class="c w hd">Concentrated sugar</div><div class="c w hd">Remove the yeast</div><div class="c w hd">Kill the yeast</div><div class="c w hd">Add sweetness</div>
+        <div class="lbl">How</div><div class="c w">Too much sugar for the yeast to finish</div><div class="c w">Very fine filters</div><div class="c w">Add alcohol (fortify) to 15–20%</div><div class="c w">Grape juice, concentrated juice or a sweet wine added to a dry one</div>
+        <div class="lbl">Example</div><div class="c w">Tokaji Aszú</div><div class="c w">White Zinfandel</div><div class="c w">Port</div><div class="c w">Red, white and rosé</div>
+      </div></div>
+    </div>
+    <div class="tell">
+      <h3>Winemaking options</h3>
+      <div class="grid one">
+        <div class="lbl">Adjustments</div><div class="c w">Add sugar in cool climates (more alcohol, body); add acid in warm climates; remove acid in cool climates.</div>
+        <div class="lbl">Inert vessels</div><div class="c w">Stainless steel or concrete: add no flavour, can be airtight.</div>
+        <div class="lbl">Oak</div><div class="c w">New oak: vanilla, coconut, charred wood, spice; toasting adds sweet spice. Old oak adds little. Oxygen through the wood gives caramel, dried fruit, nuts and softens tannin, faster in small barrels. Chips and staves are cheap alternatives.</div>
+        <div class="lbl">Malolactic</div><div class="c w">Bacteria lower acidity and can add butter. Nearly always in reds; optional in whites, usually avoided for aromatic grapes like Riesling.</div>
+        <div class="lbl">Lees</div><div class="c w">Stirring dead yeast through the wine adds body, biscuit and bread; usually avoided for aromatic grapes.</div>
+        <div class="lbl">Blending</div><div class="c w">For consistency year to year, or for complexity.</div>
+      </div>
+    </div>
+    <div class="tell">
+      <h3>Bottle ageing</h3>
+      <div class="grid">
+        <div class="spacer"></div><div class="c w hd">White</div><div class="c r hd">Red</div>
+        <div class="lbl">Colour</div><div class="c w">Lemon → gold → amber; deeper</div><div class="c r">Ruby → garnet → tawny; paler</div>
+        <div class="lbl">Tertiary</div><div class="c w">Dried apricot, honey, nut, spice</div><div class="c r">Fig, prune, meat, wet leaves; softer tannins; deposits</div>
+      </div>
+      <p class="flag">Most wines don't improve in bottle. The ones that do have high acid, plus high sugar (sweet wines) or high tannin (reds), and concentrated flavour.</p>
+    </div>
+  </section>
+
+  <!-- CHARDONNAY -->
+  <section class="sheet" id="chardonnay">
+    <header>
+      <p class="kicker">White · cool, moderate and warm</p>
+      <h2>Chardonnay</h2>
+      <p class="persona">The copycat. Climate sets the fruit and body; winemaking adds the rest. Always dry.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>Chardonnay is not always oaked.</b> Winemaking options: malolactic conversion (butter, cream; softens acid), lees stirring (more body, bread, biscuit), oak (smoke, vanilla, coconut).</li>
+      <li><b>Chablis</b> = lemon, apple and wet stones, almost never oaky.</li>
+      <li><b>Pouilly-Fuissé</b> = full-bodied, with tropical fruit and oak.</li>
+      <li><b>Very good examples age</b> for years or decades: hazelnut, mushroom.</li>
+    </ol></div>
+    <div class="tell">
+      <h3>Tell the climates apart</h3>
+      <div class="grid three">
+        <div class="spacer"></div><div class="c w hd">Cool</div><div class="c w hd">Moderate</div><div class="c w hd">Warm</div>
+        <div class="lbl">Acid</div><div class="c w">High</div><div class="c w">Medium to high</div><div class="c w">Medium</div>
+        <div class="lbl">Body</div><div class="c w">Light to medium</div><div class="c w">Medium to full</div><div class="c w">Full</div>
+        <div class="lbl">Fruit</div><div class="c w">Apple, pear, lemon, lime, wet stones</div><div class="c w">Lemon, peach, sometimes melon</div><div class="c w">Peach, pineapple, banana</div>
+        <div class="lbl">Example</div><div class="c w">Chablis</div><div class="c w">Côte d'Or (Meursault, Puligny-Montrachet)</div><div class="c w">South of France IGP, California Central Valley</div>
+      </div>
+      <p class="flag">Warm-climate Chardonnay is often acidified to balance its alcohol and body.</p>
+    </div>
+    <div class="grid one">
+      <div class="lbl">Regions</div><div class="c w">
+        <div class="reg"><b>France → Burgundy</b>, cool in the north to moderate further south.</div>
+        <div class="reg"><b>→ Bourgogne AOC</b>: simple apple and lemon, high acid.</div>
+        <div class="reg"><b>→ Chablis AOC</b>: frost is a key risk; inert vessels; Premier and Grand Cru on south/south-east hillsides are riper and more complex.</div>
+        <div class="reg"><b>→ Côte de Beaune</b>: Meursault AOC, Puligny-Montrachet AOC; oak and lees add body; premier and grand crus age for decades.</div>
+        <div class="reg"><b>→ Mâconnais</b>: Mâcon AOC is fruity, mostly unoaked (lemon, peach, melon); Pouilly-Fuissé AOC from sun-trap slopes.</div>
+        <div class="reg"><b>France → South of France IGP</b>: high volume, oak chips or staves in cheap wines.</div>
+        <div class="reg"><b>USA → California</b>: Central Valley (labelled California) has medium acid and body, oak chips. Carneros (fog) and Sonoma (sea breezes) keep acid. Napa: full-bodied, pronounced tropical fruit, vanilla and spice from new oak. Santa Barbara County. <b>Oregon</b>: high acid, lemon to melon.</div>
+        <div class="reg"><b>Australia</b>: South Eastern Australia for high volume. Adelaide Hills, Yarra Valley and Margaret River for quality.</div>
+        <div class="reg"><b>New Zealand</b>: Marlborough (lemon, peach, melon, high acid, subtle oak); Hawke's Bay (full-bodied, high acid, pronounced stone fruit).</div>
+        <div class="reg"><b>Chile</b>: Casablanca Valley (lemon, peach); Central Valley across all quality levels.</div>
+        <div class="reg"><b>South Africa</b>: Walker Bay (high acid, peach, pineapple, oak).</div>
+      </div>
+      <div class="lbl">Service</div><div class="c w">Full-bodied Californian Chardonnay: lightly chilled.</div>
+    </div>
+  </section>
+
+  <!-- RIESLING -->
+  <section class="sheet" id="riesling">
+    <header>
+      <p class="kicker">White · cool to moderate · aromatic</p>
+      <h2>Riesling</h2>
+      <p class="persona">The rigid aristocrat. Razor acid, never oaked, any sweetness level.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>Aromatic, high acid, unoaked</b> (inert vessels keep the floral aromas). Dry to sweet, light to full body.</li>
+      <li><b>Flavour follows ripeness.</b> Just-ripe: apple, lime, lemon (also pear). Extra-ripe: peach, apricot, mango, pineapple, sometimes dried apricot and raisin.</li>
+      <li><b>Sweet styles</b> come from late harvest, botrytis/noble rot, or grapes freezing on the vine. High acid balances the sugar.</li>
+      <li><b>Ages for decades:</b> honey and petrol.</li>
+      <li><b>German Prädikat levels are set by sugar levels at harvest.</b> Least to most ripe: Kabinett → Spätlese → Auslese → Beerenauslese.</li>
+    </ol></div>
+    <div class="tell">
+      <h3>The six Prädikat categories</h3>
+      <p class="swipe">Swipe sideways to see all six →</p>
+      <div class="xs"><div class="grid wide" style="--cols:6">
+        <div class="spacer"></div><div class="c w hd">Kabinett</div><div class="c w hd">Spätlese</div><div class="c w hd">Auslese</div><div class="c w hd">Beerenauslese (BA)</div><div class="c w hd">Trockenbeerenauslese (TBA)</div><div class="c w hd">Eiswein</div>
+        <div class="lbl">Grapes</div><div class="c w">Least ripe</div><div class="c w">Late harvest</div><div class="c w">Selected extra-ripe bunches</div><div class="c w">Berries concentrated by botrytis</div><div class="c w">Individual berries dried by botrytis</div><div class="c w">Frozen on the vine; no botrytis</div>
+        <div class="lbl">Style</div><div class="c w">Lightest, most delicate</div><div class="c w">More concentrated, fuller</div><div class="c w">Most have some sweetness</div><div class="c w">Always sweet</div><div class="c w">Rare, more intense than BA</div><div class="c w">Sweet; expensive, small yields</div>
+        <div class="lbl">Flavour</div><div class="c w">Green apple, lime, blossom</div><div class="c w">Riper lemon, lime, some peach</div><div class="c w">Apricot, mango, dried fruit</div><div class="c w">Apricot, mango, dried fruit, honey</div><div class="c w">Like BA, more intense</div><div class="c w">Fresh peach, apricot, mango, pineapple</div>
+      </div></div>
+      <p class="flag">Kabinett, Spätlese and Auslese can also be dry; a dry Auslese has more alcohol than a dry Spätlese. BA, TBA and Eiswein are naturally sweet, low in alcohol and age for decades. Trocken = dry; Halbtrocken = some sweetness.</p>
+    </div>
+    <div class="grid one">
+      <div class="lbl">Winemaking</div><div class="c w">Off-dry and medium styles: stop fermentation by removing the yeast, or add sterile grape juice (Süssreserve).</div>
+      <div class="lbl">Labels</div><div class="c w">Germany: PDO = Qualitätswein and Prädikatswein; PGI = Landwein (light, dry to off-dry).</div>
+      <div class="lbl">Regions</div><div class="c w">
+        <div class="reg"><b>Germany → Mosel</b>: lighter-bodied, medium sweetness balancing very high acid; steep slopes on the river.</div>
+        <div class="reg"><b>→ Rheingau</b>: drier, more body.</div>
+        <div class="reg"><b>→ Pfalz</b>: dry, medium-bodied, like Alsace.</div>
+        <div class="reg"><b>France → Alsace AOC</b>: dry, pronounced, ripe citrus and stone fruit, blossom, medium body. Grands crus age into honey and dried fruit. Vendanges Tardives = sweet, with honey and dried fruit.</div>
+        <div class="reg"><b>Australia → Clare Valley and Eden Valley</b>: moderate (altitude); dry, lime, peach, blossom, petrol.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAUVIGNON BLANC -->
+  <section class="sheet" id="sauvignon">
+    <header>
+      <p class="kicker">White · cool to moderate · aromatic</p>
+      <h2>Sauvignon Blanc</h2>
+      <p class="persona">The twitchy gardener. Herbaceous, zippy, best young.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>Typical aromas: grass and citrus.</b> Herbaceous (grass, green bell pepper, asparagus) and floral (blossom).</li>
+      <li><b>Typically dry, high acid, light to medium body, unoaked, single varietal.</b> Drink young: even top wines lose their fresh aromas within a couple of years.</li>
+      <li><b>Loire AOCs: Sancerre and Pouilly-Fumé.</b> Pouilly-Fuissé is Chardonnay.</li>
+      <li><b>In Pessac-Léognan it is blended with Sémillon</b>, which adds body and ageing potential.</li>
+    </ol></div>
+    <div class="tell">
+      <h3>Tell the styles apart</h3>
+      <div class="grid three">
+        <div class="spacer"></div><div class="c w hd">Loire (Sancerre, Pouilly-Fumé)</div><div class="c w hd">Bordeaux (Graves, Pessac-Léognan)</div><div class="c w hd">Marlborough</div>
+        <div class="lbl">Climate</div><div class="c w">Cool</div><div class="c w">Moderate</div><div class="c w">Cool to moderate</div>
+        <div class="lbl">Style</div><div class="c w">Apple, grass, asparagus, sometimes wet stones</div><div class="c w">Blend with Sémillon; more concentrated, often oaked; ages into honey and nuts</div><div class="c w">More pronounced: lemon, peach, passion fruit + green bell pepper, asparagus</div>
+      </div>
+      <p class="flag">Ripeness runs from green (grass, green bell pepper, asparagus, apple, gooseberry, wet stones) to tropical (passion fruit).</p>
+    </div>
+    <div class="grid one">
+      <div class="lbl">Regions</div><div class="c w">
+        <div class="reg"><b>France → Loire</b>: Sancerre AOC and Pouilly-Fumé AOC face each other across the river; Touraine AOC is fruity and inexpensive.</div>
+        <div class="reg"><b>→ Bordeaux AOC</b>: simple grass and green apple.</div>
+        <div class="reg"><b>→ South of France</b>: only sites cooled by altitude; passion fruit and grass.</div>
+        <div class="reg"><b>New Zealand → Marlborough</b>: the classic home; blends of sites and ripeness levels.</div>
+        <div class="reg"><b>Australia → Adelaide Hills</b> (most planted grape; citrus to tropical) and <b>Margaret River</b> (often with Semillon; grass).</div>
+        <div class="reg"><b>Chile → Casablanca Valley</b>: premium quality. Central Valley across all quality levels.</div>
+        <div class="reg"><b>South Africa → Constantia</b> (ripe tropical fruit, herbaceous) and <b>Elgin</b> (coolest region; apple, wet stones).</div>
+        <div class="reg"><b>USA → California</b>: mostly too warm; cooler Napa Valley sites, sometimes oaked (smoke).</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHENIN / SEMILLON / FURMINT -->
+  <section class="sheet" id="chenin">
+    <header>
+      <p class="kicker">White · dry to sweet</p>
+      <h2>Chenin Blanc, Sémillon and Furmint</h2>
+      <p class="persona">The sweet-wine trio. All susceptible to botrytis/noble rot, all made dry to sweet, all able to age.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>Vouvray AOC = Chenin Blanc.</b> Chenin is South Africa's most widely planted white grape.</li>
+      <li><b>Sauternes = Sémillon</b>, concentrated by botrytis. Serve well chilled (6–8°C).</li>
+      <li><b>Tokaji Aszú = Furmint</b>, from Tokaj in Hungary. Always sweet; 6 Puttonyos is sweeter than 5.</li>
+      <li><b>Spelling:</b> Sémillon in France, Semillon in English-speaking countries.</li>
+    </ol></div>
+    <div class="tell">
+      <h3>Tell them apart</h3>
+      <div class="grid three">
+        <div class="spacer"></div><div class="c w hd">Chenin Blanc</div><div class="c w hd">Sémillon</div><div class="c w hd">Furmint</div>
+        <div class="lbl">Climate</div><div class="c w">Cool, moderate and warm</div><div class="c w">Moderate and warm</div><div class="c w">Moderate</div>
+        <div class="lbl">Acid</div><div class="c w">High</div><div class="c w">Medium to high</div><div class="c w">High</div>
+        <div class="lbl">Fruit</div><div class="c w">Apple, lemon → peach, pineapple, mango</div><div class="c w">Young: apple, lemon, grass</div><div class="c w">Tokaji Aszú: fresh and dried apricot, citrus</div>
+        <div class="lbl">Ages into</div><div class="c w">Dried fruit, honey, nuts</div><div class="c w">Dried fruit, nuts, honey</div><div class="c w">Dried fruit, caramel, nuts</div>
+      </div>
+    </div>
+    <div class="grid one">
+      <div class="lbl">Chenin regions</div><div class="c w">
+        <div class="reg"><b>France → Loire → Vouvray AOC</b>: only Chenin; dry (fresh apple), Demi-Sec (off-dry or medium), sweet (stone and tropical fruit) and sparkling. Typically unoaked; the best age into honey and dried fruit.</div>
+        <div class="reg"><b>South Africa</b>: keeps high acid in a warm climate. Cheap inland wines are dry, medium-bodied, peach and pineapple, sometimes vanilla from oak chips. Old vines give pineapple, mango, smoke and vanilla.</div>
+      </div>
+      <div class="lbl">Sémillon regions</div><div class="c w">
+        <div class="reg"><b>France → Bordeaux AOC</b>: blended with Sauvignon Blanc for dry and sweet wines; Sémillon adds body and ageing potential.</div>
+        <div class="reg"><b>→ Sauternes AOC</b>: sweet, medium to high alcohol, full body, high acid; apricot plus oak (smoke, vanilla); ages into dried fruit, honey, caramel.</div>
+        <div class="reg"><b>Australia → Hunter Valley</b>: dry, light body, low alcohol, picked early, inert vessels; neutral young, then honey and nuts after years in bottle. <b>Barossa Valley</b>: Hunter-like to full-bodied and oaked.</div>
+      </div>
+      <div class="lbl">Furmint regions</div><div class="c w">
+        <div class="reg"><b>Hungary → Tokaj</b>: Furmint is the most planted grape; dry and medium wines too. Tokaji Aszú: botrytis grapes, blended with local grapes, amber from long oak ageing; vanilla, smoke and caramel (deliberate oxidation); full body, high acid, long finish.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHITES COMPARED -->
+  <section class="sheet" id="whites">
+    <header>
+      <p class="kicker">White · side by side</p>
+      <h2>Day 1 whites compared</h2>
+    </header>
+    <p class="swipe">Swipe sideways to see all six grapes →</p>
+    <div class="xs"><div class="grid wide" style="--cols:6">
+      <div class="spacer"></div><div class="c w hd">Chardonnay</div><div class="c w hd">Riesling</div><div class="c w hd">Sauvignon Blanc</div><div class="c w hd">Chenin Blanc</div><div class="c w hd">Sémillon</div><div class="c w hd">Furmint</div>
+      <div class="lbl">Climate</div><div class="c w">Cool to warm</div><div class="c w">Cool to moderate</div><div class="c w">Cool to moderate</div><div class="c w">Cool to warm</div><div class="c w">Moderate to warm</div><div class="c w">Moderate</div>
+      <div class="lbl">Acidity</div><div class="c w">Medium to high</div><div class="c w">High</div><div class="c w">High</div><div class="c w">High</div><div class="c w">Medium to high</div><div class="c w">High</div>
+      <div class="lbl">Sweetness</div><div class="c w">Dry</div><div class="c w">Dry to sweet</div><div class="c w">Typically dry</div><div class="c w">Dry to sweet</div><div class="c w">Dry to sweet</div><div class="c w">Dry to sweet</div>
+      <div class="lbl">Oak</div><div class="c w">Optional, often used</div><div class="c w">Unoaked</div><div class="c w">Typically unoaked</div><div class="c w">Oaked or unoaked</div><div class="c w">Unoaked or oaked</div><div class="c w">Unoaked or oaked</div>
+      <div class="lbl">The tell</div><div class="c w">Style follows climate; butter, toast from winemaking</div><div class="c w">Aromatic: lime, blossom; petrol with age</div><div class="c w">Herbaceous: grass, green bell pepper</div><div class="c w">Apple to pineapple; Vouvray</div><div class="c w">Sauternes; Hunter Valley</div><div class="c w">Tokaji Aszú</div>
+      <div class="lbl">Ageing</div><div class="c w">Hazelnut, mushroom</div><div class="c w">Honey, petrol</div><div class="c w">Drink young</div><div class="c w">Dried fruit, honey, nuts</div><div class="c w">Dried fruit, nuts, honey</div><div class="c w">Dried fruit, caramel, nuts</div>
+    </div></div>
+  </section>
+
+  <!-- PINOT NOIR -->
+  <section class="sheet" id="pinot">
+    <header>
+      <p class="kicker">Red · cool to moderate</p>
+      <h2>Pinot Noir</h2>
+      <p class="persona">The fragile artist. Thin-skinned, pale to medium colour, sulks in heat.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>High acid, low to medium tannin, strawberry, raspberry, red cherry.</b></li>
+      <li><b>Too warm and it loses its fresh fruit and tastes of cooked fruit.</b> Prone to rot and disease.</li>
+      <li><b>Can be enjoyed young.</b> Very good examples age into mushroom and forest floor.</li>
+      <li><b>Burgundy Grand Cru must come from a single vineyard.</b> Gevrey-Chambertin and Nuits-Saint-Georges are famous Pinot villages.</li>
+      <li><b>Typically single varietal</b> (except sparkling, e.g. Champagne). Careful with oak: older or larger barrels; the best show subtle smoke and cloves.</li>
+    </ol></div>
+    <div class="tell">
+      <h3>Tell the Burgundy labels apart (low to high quality)</h3>
+      <p class="swipe">Swipe sideways to see all four →</p>
+      <div class="xs"><div class="grid wide" style="--cols:4">
+        <div class="spacer"></div><div class="c r hd">Bourgogne AOC</div><div class="c r hd">Village (e.g. Gevrey-Chambertin)</div><div class="c r hd">Premier Cru</div><div class="c r hd">Grand Cru</div>
+        <div class="lbl">Where</div><div class="c r">Anywhere in Burgundy</div><div class="c r">Better sites, some on slopes</div><div class="c r">Top vineyards within a village; label shows village + "Premier Cru"</div><div class="c r">A handful of the best vineyards, each its own appellation</div>
+        <div class="lbl">Style</div><div class="c r">Light to medium body, fresh red fruit; drink young; can still be pricey</div><div class="c r">More intensity, complexity, length; the best can age</div><div class="c r">Concentrated strawberry, red cherry; subtle cloves, smoke</div><div class="c r">Most concentrated and complex; longest ageing; rare and expensive</div>
+      </div></div>
+    </div>
+    <div class="grid one">
+      <div class="lbl">Labels</div><div class="c r">France: PDO = AOP or AOC; PGI = IGP or Vin de Pays.</div>
+      <div class="lbl">Regions</div><div class="c r">
+        <div class="reg"><b>France → Burgundy</b>: cool north to moderate south; best on south/south-east slopes. Côte d'Or = Côte de Nuits (Gevrey-Chambertin, Nuits-Saint-Georges) + Côte de Beaune (Beaune, Pommard).</div>
+        <div class="reg"><b>USA → California</b>: Carneros (fog), Sonoma (Pacific breezes), Santa Barbara County; ripe strawberry, red cherry, vanilla from oak. <b>Oregon</b>: moderate; fresh red fruit, smoke, cloves; earth and mushroom with age.</div>
+        <div class="reg"><b>Chile → Casablanca Valley</b>: very fruity, cooked strawberry; good value.</div>
+        <div class="reg"><b>South Africa → Walker Bay</b>: sea breezes; vibrant red fruit.</div>
+        <div class="reg"><b>Australia → Yarra Valley</b>, Mornington Peninsula: light and fragrant to riper red plum and strawberry, medium tannin.</div>
+        <div class="reg"><b>New Zealand → Martinborough, Marlborough</b>; <b>Central Otago</b> makes the ripest, most powerful (strawberry, red cherry, medium to full body). Hawke's Bay is not known for Pinot.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CABERNET VS MERLOT -->
+  <section class="sheet" id="bordeaux">
+    <header>
+      <p class="kicker">Red · moderate to warm · Bordeaux</p>
+      <h2>Cabernet Sauvignon vs Merlot</h2>
+      <p class="persona">Bordeaux's blending partners. Cabernet is the stern, thick-skinned one; Merlot the soft, medium one.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>Left Bank</b> (Médoc, Haut-Médoc with Margaux and Pauillac, Graves with Pessac-Léognan) = Cabernet-led. <b>Right Bank</b> (Saint-Émilion, Pomerol) = Merlot-led. St-Émilion Grand Cru is mostly Merlot; Pomerol is Right Bank.</li>
+      <li><b>Why blend:</b> Merlot lowers tannin and acid, makes wine ready sooner and adds red fruit. Cabernet adds tannin and acidity.</li>
+      <li><b>Cabernet's high acid and tannin let it age a long time.</b> Gravel soils help it ripen on the Left Bank: they drain rain and store heat.</li>
+      <li><b>Labels:</b> Cru Bourgeois = good Médoc wine outside the Grand Cru Classé system. Château = estate-grown grapes. Bordeaux Supérieur has slightly stricter rules than Bordeaux AOC.</li>
+    </ol></div>
+    <div class="tell">
+      <h3>Tell them apart</h3>
+      <div class="grid">
+        <div class="spacer"></div><div class="c r hd">Cabernet Sauvignon if…</div><div class="c r hd">Merlot if…</div>
+        <div class="lbl">Acid</div><div class="c r">High</div><div class="c r">Medium</div>
+        <div class="lbl">Tannin</div><div class="c r">High</div><div class="c r">Medium</div>
+        <div class="lbl">Fruit</div><div class="c r">Blackcurrant, black cherry + mint or green bell pepper; pronounced</div><div class="c r">Just-ripe: strawberry, red plum, green bell pepper. Riper: cooked blackberry, black plum</div>
+        <div class="lbl">Body</div><div class="c r">Medium to full; deeply coloured</div><div class="c r">Light to full</div>
+        <div class="lbl">With age</div><div class="c r">Dried fruit, earth, forest floor</div><div class="c r">Dried fruit, tobacco</div>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="spacer"></div><div class="c r hd">Cabernet Sauvignon</div><div class="c r hd">Merlot</div>
+      <div class="lbl">Climate</div>
+      <div class="c r">Thick skin needs a long, warm season; in moderate climates only the warmest sites ripen it.</div>
+      <div class="c r">Riper style comes easily in warm climates, or by picking later in moderate ones.</div>
+      <div class="lbl">Winemaking</div>
+      <div class="c r">Oak maturation common: softens tannin; new oak adds smoke, vanilla, cloves.</div>
+      <div class="c r">Oaked or unoaked; fuller styles benefit from oak.</div>
+      <div class="lbl">Regions</div>
+      <div class="c r">
+        <div class="reg"><b>France → Bordeaux Left Bank</b>; South of France ripens it reliably.</div>
+        <div class="reg"><b>USA → Napa Valley</b>: warm, sunny, easy to ripen; Oakville, Rutherford, Calistoga. Sonoma.</div>
+        <div class="reg"><b>Chile → Maipo, Colchagua</b> (Central Valley): foothill wines show mint and green bell pepper. Casablanca is not a major source.</div>
+        <div class="reg"><b>South Africa → Stellenbosch</b>: premium; Cape Blends add Pinotage.</div>
+        <div class="reg"><b>Australia → Coonawarra</b> (mint, blackcurrant, smoke, cedar) and Margaret River.</div>
+        <div class="reg"><b>New Zealand → Hawke's Bay</b>: warmest sites only.</div>
+      </div>
+      <div class="c r">
+        <div class="reg"><b>France → Bordeaux</b>: most planted grape; moderate and rainy. Bordeaux AOC and Supérieur are Merlot-led; Saint-Émilion and Pomerol are full-bodied with black fruit and oak. South of France.</div>
+        <div class="reg"><b>USA → California</b>: oak gives vanilla, coconut, smoke; Napa and Sonoma for concentrated wines.</div>
+        <div class="reg"><b>Chile → Central Valley</b>: soft, medium-bodied Merlot from high yields.</div>
+        <div class="reg"><b>Australia → Margaret River</b>: blended with Cabernet.</div>
+        <div class="reg"><b>New Zealand → Hawke's Bay</b>; <b>South Africa → Stellenbosch</b>.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SYRAH VS SHIRAZ -->
+  <section class="sheet" id="syrah">
+    <header>
+      <p class="kicker">Red · moderate and warm only · same grape, two styles</p>
+      <h2>Syrah vs Shiraz</h2>
+      <p class="persona">The peppery Frenchman with a loud Australian alter ego. Thick skin, small grapes, medium to high tannin and acid.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>Typical profile: blackberry, black pepper, herbal.</b></li>
+      <li><b>Classic region: Northern Rhône.</b> Best AOCs: Côte-Rôtie and Hermitage. Hand-harvested because the vineyards are on steep slopes.</li>
+      <li><b>Blended with Grenache</b> to add colour and tannin.</li>
+      <li><b>Barossa Valley</b> has some of the oldest vines: full body, ripe tannins, cooked black fruit.</li>
+    </ol></div>
+    <div class="tell">
+      <h3>Tell them apart</h3>
+      <div class="grid">
+        <div class="spacer"></div><div class="c r hd">Syrah (moderate) if…</div><div class="c r hd">Shiraz (warm) if…</div>
+        <div class="lbl">Body</div><div class="c r">Medium</div><div class="c r">Full, high alcohol</div>
+        <div class="lbl">Fruit</div><div class="c r">Fresh black cherry, blackberry, herbal notes</div><div class="c r">Cooked blackberry, black cherry, liquorice; oak vanilla, coffee</div>
+        <div class="lbl">Home</div><div class="c r">Northern Rhône</div><div class="c r">Warm parts of Australia, e.g. Barossa</div>
+      </div>
+      <p class="flag">Black pepper shows up in both. Outside France and Australia, the name on the label hints at the style.</p>
+    </div>
+    <div class="grid one">
+      <div class="lbl">Winemaking</div><div class="c r">Oak maturation common: softens tannin, adds smoke and spice. Also adds colour, black fruit and tannin to blends ("Rhône Blends").</div>
+      <div class="lbl">Regions</div><div class="c r">
+        <div class="reg"><b>France → Northern Rhône</b>: moderate; steep slopes, sunlight reflected off the river; the only black grape allowed.</div>
+        <div class="reg"><b>→ Côte-Rôtie AOC</b>: Syrah's northern limit; complex, peppery; sometimes co-fermented with a little Viognier for floral notes.</div>
+        <div class="reg"><b>→ Hermitage AOC</b>: one steep south-facing hill.</div>
+        <div class="reg"><b>→ Crozes-Hermitage AOC</b>: flatter, larger; less intense and cheaper.</div>
+        <div class="reg"><b>France → South of France</b>: blended into Minervois AOC; single varietal as Pays d'Oc IGP.</div>
+        <div class="reg"><b>Australia</b>: most planted grape. South Eastern Australia for high volume. <b>Hunter Valley</b>: medium body, medium to high tannin, fresh black fruit; earth and meat with age.</div>
+      </div>
+      <div class="lbl">With age</div><div class="c r">A decade or more for the best: dried fruit, leather, meat, earth.</div>
+    </div>
+  </section>
+
+  <!-- GRENACHE -->
+  <section class="sheet" id="grenache">
+    <header>
+      <p class="kicker">Red and rosé · warm</p>
+      <h2>Grenache / Garnacha</h2>
+      <p class="persona">The jammy sunbather. Garnacha in Spain, where it started; Grenache in France.</p>
+    </header>
+    <div class="must"><h3>Must know</h3><ol>
+      <li><b>Needs a lot of heat to ripen fully</b>: warm climates only.</li>
+      <li><b>High sugar, thin skins, low acidity</b>; low to medium tannin.</li>
+      <li><b>Strawberry, raspberry, white pepper</b>; also red plum, red cherry, liquorice.</li>
+      <li><b>Often blended</b> with Syrah and Tempranillo. Often used for rosé.</li>
+      <li><b>Côtes du Rhône</b> reds are mostly Grenache; <b>Châteauneuf-du-Pape</b> is a Grenache-based Southern Rhône cru; <b>Priorat DOCa</b> makes Spain's most powerful Garnacha.</li>
+    </ol></div>
+    <div class="tell">
+      <h3>Tell the Rhône labels apart (low to high quality)</h3>
+      <div class="grid three">
+        <div class="spacer"></div><div class="c r hd">Côtes du Rhône AOC</div><div class="c r hd">Côtes du Rhône Villages AOC</div><div class="c r hd">Rhône Crus</div>
+        <div class="lbl">Where</div><div class="c r">Almost all from the Southern Rhône</div><div class="c r">Named southern villages</div><div class="c r">Top areas, north and south: Côte-Rôtie, Hermitage, Crozes-Hermitage, Condrieu, Châteauneuf-du-Pape</div>
+        <div class="lbl">Style</div><div class="c r">Simple, medium-bodied, red fruit and spice; drink now</div><div class="c r">More intensity and complexity</div><div class="c r">Outstanding complexity, long ageing</div>
+      </div>
+    </div>
+    <div class="grid one">
+      <div class="lbl">Winemaking</div><div class="c r">Best wines need controlled yields. Simple wines unoaked; top wines barrel-matured, often in old oak. Rosé: short maceration, dry to medium, drink young and chilled.</div>
+      <div class="lbl">Regions</div><div class="c r">
+        <div class="reg"><b>France → Southern Rhône</b>: warm, flat valley; blends with Syrah and other local grapes. <b>Châteauneuf-du-Pape AOC</b>: full body, high alcohol; large round stones store heat.</div>
+        <div class="reg"><b>France → South of France → Minervois AOC</b>: with Syrah.</div>
+        <div class="reg"><b>Spain → Rioja DOCa</b> (body, fresh red fruit), <b>Navarra DO</b> (also dry rosé), <b>Priorat DOCa</b> (Catalunya; very old vines, tiny yields).</div>
+        <div class="reg"><b>Australia → Barossa Valley and McLaren Vale</b>: many old vines; also blended with Shiraz.</div>
+      </div>
+      <div class="lbl">With age</div><div class="c r">Earth, meat, dried fruit, caramel.</div>
+    </div>
+  </section>
+
+  <!-- REDS COMPARED -->
+  <section class="sheet" id="reds">
+    <header>
+      <p class="kicker">Red · side by side</p>
+      <h2>Day 1 reds compared</h2>
+    </header>
+    <p class="swipe">Swipe sideways to see all five grapes →</p>
+    <div class="xs"><div class="grid wide" style="--cols:5">
+      <div class="spacer"></div><div class="c r hd">Pinot Noir</div><div class="c r hd">Merlot</div><div class="c r hd">Cabernet Sauvignon</div><div class="c r hd">Syrah/Shiraz</div><div class="c r hd">Grenache</div>
+      <div class="lbl">Climate</div><div class="c r">Cool to moderate</div><div class="c r">Moderate to warm</div><div class="c r">Moderate to warm</div><div class="c r">Moderate to warm</div><div class="c r">Warm</div>
+      <div class="lbl">Skin</div><div class="c r">Thin</div><div class="c r">Not stated</div><div class="c r">Thick</div><div class="c r">Thick</div><div class="c r">Thin</div>
+      <div class="lbl">Acidity</div><div class="c r">High</div><div class="c r">Medium</div><div class="c r">High</div><div class="c r">Medium to high</div><div class="c r">Low</div>
+      <div class="lbl">Tannin</div><div class="c r">Low to medium</div><div class="c r">Medium</div><div class="c r">High</div><div class="c r">Medium to high</div><div class="c r">Low to medium</div>
+      <div class="lbl">Fruit</div><div class="c r">Strawberry, raspberry, red cherry</div><div class="c r">Strawberry, red plum → blackberry, black plum</div><div class="c r">Blackcurrant, black cherry</div><div class="c r">Blackberry, black cherry</div><div class="c r">Strawberry, raspberry, red plum, red cherry</div>
+      <div class="lbl">The tell</div><div class="c r">Delicate red fruit, high acid</div><div class="c r">Soft, medium everything</div><div class="c r">Mint or green bell pepper</div><div class="c r">Black pepper</div><div class="c r">White pepper, high sugar</div>
+      <div class="lbl">Ageing</div><div class="c r">Mushroom, forest floor</div><div class="c r">Dried fruit, tobacco</div><div class="c r">Dried fruit, earth, forest floor</div><div class="c r">Dried fruit, leather, meat, earth</div><div class="c r">Earth, meat, dried fruit, caramel</div>
+      <div class="lbl">Home</div><div class="c r">Burgundy</div><div class="c r">Bordeaux Right Bank</div><div class="c r">Bordeaux Left Bank</div><div class="c r">Northern Rhône; Barossa</div><div class="c r">Southern Rhône; Priorat</div>
+    </div></div>
+  </section>
+
+  <div class="sources">
+    <p>Built only from the Fine Vintage 165-question practice bank, the WSET Level 2 workbook (2019) and the WSET Level 2 textbook, Wines: Looking behind the label (2019). Where they differ, the question bank wins.</p>
+  </div>
+</div>
+
+</body></html>
